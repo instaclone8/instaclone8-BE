@@ -1,12 +1,10 @@
 package com.example.instaclone.security;
 
-import com.example.instaclone.jwt.UserRoleEnum;
+
 import com.example.instaclone.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 public class UserDetailsImpl implements UserDetails {
@@ -14,25 +12,24 @@ public class UserDetailsImpl implements UserDetails {
     private final User user;
     private final String username;
 
+    public User getUser() {
+        return user;
+    }
+
+
     public UserDetailsImpl(User user, String username) {
         this.user = user;
         this.username = username;
     }
 
-    public User getUser() {
-        return user;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        UserRoleEnum role = user.getRole();
-        String authority = role.getAuthority();
-
-        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(authority);
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(simpleGrantedAuthority);
-
-        return authorities;
+    public String getPassword() {
+        return null;
     }
 
     @Override
@@ -40,10 +37,6 @@ public class UserDetailsImpl implements UserDetails {
         return this.username;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
