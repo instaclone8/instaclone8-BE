@@ -93,7 +93,11 @@ public class UserService {
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
         List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
-        for (Post post : posts) {
+            for (Post post : posts) {
+                if (post.getUser() == null) {
+                    // user가 null인 경우 해당 게시글은 skip
+                    continue;
+                }
             PostResponseDto postResponseDto = new PostResponseDto();
             postResponseDto.setPostId(post.getId());
             postResponseDto.setImage(post.getImage());

@@ -38,7 +38,7 @@ public class Post extends Timestamped {
     List<Comment> comments = new ArrayList<>();
 
 //    @OneToMany
-//    List<Likes> likes = new ArrayList<>();
+//    List<Likes> likes = new ArrayList<>();가
 
     public Post (PostRequestDto reqDto){
         this.content = reqDto.getContent();
