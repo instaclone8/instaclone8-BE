@@ -1,16 +1,16 @@
 package com.example.instaclone.user.dto;
 
-import com.example.instaclone.user.dto.StatusEnum;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 public class MessageResponseDto {
 
-    private int status;
+    private int statusCode;
     private String message;
 
-    public MessageResponseDto(StatusEnum statusEnum) {
-        this.status = statusEnum.statusCode;
-        this.message = statusEnum.msg;
+    public MessageResponseDto(HttpStatus httpStatus, String message) {
+        this.statusCode = httpStatus.value();
+        this.message = message;
     }
 }
