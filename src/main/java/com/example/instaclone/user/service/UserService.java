@@ -1,6 +1,8 @@
 package com.example.instaclone.user.service;
 
 import com.example.instaclone.jwt.JwtUtil;
+import com.example.instaclone.user.dto.CheckEmailRequestDto;
+import com.example.instaclone.user.dto.CheckUsernameRequestDto;
 import com.example.instaclone.user.dto.LoginRequestDto;
 import com.example.instaclone.user.dto.SignupRequestDto;
 import com.example.instaclone.user.entity.User;
@@ -60,6 +62,24 @@ public class UserService {
             response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(
                     user.getUsername()));
         }
+
+    @Transactional(readOnly = true)
+    public void checkemail(CheckEmailRequestDto checkEmailRequestDto) {
+        String email = checkEmailRequestDto.getEmail();
+        Optional<User> findemail = userRepository.findByEmail(email);
+        if(findemail.isPresent()) {
+            throw new IllegalArgumentException("이메일이 중복됩니다");
+        }
+    }
+
+    @Transactional(readOnly = true)
+    public void checkusername(CheckUsernameRequestDto checkUsernameRequestDto) {
+    String username = checkUsernameRequestDto.getUsername();
+    Optional<User> findusername = userRepository.findByUsername(username);
+    if(findusername.isPresent()) {
+        throw new IllegalArgumentException("유저이름이 중복됩니다");
+    }
+    }
 }
 
 

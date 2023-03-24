@@ -1,8 +1,6 @@
 package com.example.instaclone.user.controller;
 
-import com.example.instaclone.user.dto.MessageResponseDto;
-import com.example.instaclone.user.dto.LoginRequestDto;
-import com.example.instaclone.user.dto.SignupRequestDto;
+import com.example.instaclone.user.dto.*;
 import com.example.instaclone.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -35,4 +33,20 @@ public class UserController {
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "로그인 성공"));
     }
 
+    // 마이페이지
+//    @GetMapping("/mypage{userId}")
+
+    // 유저이메일 중복 ck
+    @PostMapping("/checkemail")
+    public ResponseEntity<MessageResponseDto> checkemail(@Valid @RequestBody CheckEmailRequestDto checkEmailRequestDto) {
+        userservice.checkemail(checkEmailRequestDto);
+        return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
+    }
+
+    //유저이름 중복 ck
+    @PostMapping("/checkusername")
+    public ResponseEntity<MessageResponseDto> checkusername(@Valid @RequestBody CheckUsernameRequestDto checkUsernameRequestDto) {
+        userservice.checkusername(checkUsernameRequestDto);
+        return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
+    }
 }
