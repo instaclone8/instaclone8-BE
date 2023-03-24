@@ -16,12 +16,14 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     private String username;
 
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String userImage;
 
     @Column(nullable = false)
     private String email;
@@ -30,7 +32,13 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
 
+    public User(String username, String password, String userImage, String email) {
+        this.username = username;
+        this.password = password;
+        this.userImage = userImage;
+        this.email = email;
     }
 
 }

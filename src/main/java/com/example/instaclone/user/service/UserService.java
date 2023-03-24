@@ -37,7 +37,6 @@ public class UserService {
         }
 
         Optional<User> foundEmail = userRepository.findByEmail(email);
-
         if (foundEmail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
         }

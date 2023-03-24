@@ -1,4 +1,11 @@
 package com.example.instaclone.post.repository;
 
-public interface PostRepository {
+import com.example.instaclone.post.entity.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface PostRepository extends JpaRepository<Post, Long> {
+
+    List<Post> findAll();
 }
