@@ -1,4 +1,42 @@
 package com.example.instaclone.comment.service;
 
+import com.example.instaclone.comment.dto.CommentRequestDto;
+import com.example.instaclone.comment.entity.Comment;
+import com.example.instaclone.comment.repository.CommentRepository;
+import com.example.instaclone.post.entity.Post;
+import com.example.instaclone.post.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+@RequiredArgsConstructor
 public class CommentService {
+    private final CommentRepository commentRepository;
+
+    private final PostRepository postRepository;
+
+    @Transactional
+    public void createComment(Long postId, CommentRequestDto commentRequestDto, User user) {
+//        게시글 존재 여부 확인. 없으면 예외처리
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
+        );
+        Comment comment = new Comment(post, user, commentRequestDto);
+        commentRepository.save(comment);
+    }
+
+    //    2. 댓글 삭제 메서드
+    @Transactional
+    public void deleteComment(Long postId, Long commentId , Member member) {
+        //        게시글 존재 여부 확인. 없으면 예외처리
+        Post post = postRepository.findById(postId).orElseThrow(
+                () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
+        );
+//        댓글 존재 여부 확인. 없으면 예외처리
+        Comment comment = commentRepository.findById(commentId).orElseThrow(
+                () -> new IllegalArgumentException("댓글을 찾을 수 없습니다.")
+        );
+        commentRepository.deleteById(commentId);
+    }
 }
