@@ -49,7 +49,7 @@ public class UserController {
     }
 
     // 마이페이지 조회 (토큰o)
-    @GetMapping("/mypage{userId}")
+    @GetMapping("/mypage/{userId}")
     public MyPageResponseDto getMyPage(@PathVariable Long userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return userservice.getMyPage(userId, userDetails.getUser());
     }

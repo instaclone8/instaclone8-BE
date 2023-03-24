@@ -91,7 +91,7 @@ public class UserService {
     public MyPageResponseDto getMyPage(Long userId, User user) {
        user =  userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreatedAtDesc(user);
+        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for (Post post : posts) {
             PostResponseDto postResponseDto = new PostResponseDto();
@@ -101,7 +101,7 @@ public class UserService {
             postResponseDto.setCommentCnt(post.getComments().size());
             postResponseDtos.add(postResponseDto);
         }
-        return new MyPageResponseDto(user.getId(), user.getUsername(), user.getUserImage(), postResponseDtos.size(), postResponseDtos);
+        return new MyPageResponseDto(user, postResponseDtos);
     }
 }
 
