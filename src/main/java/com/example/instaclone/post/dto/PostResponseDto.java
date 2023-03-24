@@ -5,13 +5,14 @@ import com.example.instaclone.comment.entity.Comment;
 import com.example.instaclone.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class PostResponseDto {
 
     private Long postId;
