@@ -13,6 +13,7 @@ public class SignupRequestDto {
     private String username;
 
     @NotBlank(message = "비밀번호는 필수사항 입니다.")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{6,15}$", message = "password는 6~15글자, 알파벳, 숫자, 특수문자를 최소 하나씩 입력해야 합니다.")
     private String password;
 
     @NotBlank(message = "이메일은 필수사항 입니다.")
