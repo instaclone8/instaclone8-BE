@@ -26,20 +26,22 @@ public class UserService {
 
     @Transactional
     public void signup(SignupRequestDto signupRequestDto) {
-
         String username = signupRequestDto.getUsername();
         String password = passwordEncoder.encode(signupRequestDto.getPassword());
         String email = signupRequestDto.getEmail();
 
         Optional<User> foundUsername = userRepository.findByUsername(username);
+
         if (foundUsername.isPresent()) {
             throw new IllegalArgumentException("중복된 이름이 존재합니다.");
         }
 
-        Optional<User> findByEmail = userRepository.findByEmail(signupRequestDto.getEmail());
-        if (findByEmail.isPresent()) {
+        Optional<User> foundEmail = userRepository.findByEmail(email);
+
+        if (foundEmail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
         }
+
         User user = new User(username, password, email);
         userRepository.save(user);
     }

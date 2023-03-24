@@ -1,14 +1,19 @@
 package com.example.instaclone.user.entity;
 
+
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Getter @Entity(name = "users") @NoArgsConstructor
+@Getter
+@NoArgsConstructor
+@Entity(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
 
     @Column(nullable = false)

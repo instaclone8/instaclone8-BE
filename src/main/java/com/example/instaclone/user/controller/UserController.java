@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-@RestController @RequiredArgsConstructor
+@RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
     private final UserService userservice;
@@ -33,12 +34,5 @@ public class UserController {
         userservice.login(loginRequestDto, response);
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "로그인 성공"));
     }
-
-//    마이페이지
-//    @GetMapping("/mypage{userId}")
-
-
-
-
 
 }

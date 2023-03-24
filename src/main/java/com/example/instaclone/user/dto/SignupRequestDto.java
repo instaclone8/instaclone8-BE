@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Getter
-
 public class SignupRequestDto {
 
     @NotBlank(message = "유저이름은 필수사항 입니다.")
