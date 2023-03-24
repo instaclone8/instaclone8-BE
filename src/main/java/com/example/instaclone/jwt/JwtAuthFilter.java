@@ -1,5 +1,6 @@
 package com.example.instaclone.jwt;
 
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+
 
 @RequiredArgsConstructor
 @Slf4j
@@ -40,6 +42,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     }
 
     //    SecurityContextHolder안에 인증객체 넣음
+
     public void setAuthentication(String username) {
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         Authentication authentication = jwtUtil.createAuthentication(username);

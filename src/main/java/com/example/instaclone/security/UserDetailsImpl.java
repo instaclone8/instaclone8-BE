@@ -1,5 +1,6 @@
 package com.example.instaclone.security;
 
+
 import com.example.instaclone.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +16,12 @@ public class UserDetailsImpl implements UserDetails {
         return user;
     }
 
+
     public UserDetailsImpl(User user, String username) {
         this.user = user;
         this.username = username;
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -33,6 +36,7 @@ public class UserDetailsImpl implements UserDetails {
     public String getUsername() {
         return this.username;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
@@ -54,3 +58,4 @@ public class UserDetailsImpl implements UserDetails {
         return false;
     }
 }
+

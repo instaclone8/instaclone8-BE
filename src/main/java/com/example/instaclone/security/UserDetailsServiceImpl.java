@@ -19,3 +19,4 @@ public class UserDetailsServiceImpl {
         return new UserDetailsImpl(user, user.getUsername());
     }
 }
+

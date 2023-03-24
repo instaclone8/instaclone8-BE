@@ -1,8 +1,10 @@
 package com.example.instaclone.config;
 
+
 import com.example.instaclone.exception.ApiException;
 import com.example.instaclone.jwt.JwtAuthFilter;
 import com.example.instaclone.jwt.JwtUtil;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +29,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class WebSecurityConfig {
 
     private final JwtUtil jwtUtil;
+  
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -43,11 +46,12 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        // CSRF 설정
         http.csrf().disable();
 
         // 기본 설정인 Session 방식은 사용하지 않고 JWT 방식을 사용하기 위한 설정
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
         http.authorizeRequests().antMatchers("/api/signup").permitAll()
                 .antMatchers( "/api/login").permitAll()
                 .anyRequest().authenticated()
