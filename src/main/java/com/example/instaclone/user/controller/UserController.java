@@ -13,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -42,6 +43,8 @@ public class UserController {
     // 유저이메일 중복 ck
     @PostMapping("/checkemail")
     public ResponseEntity<MessageResponseDto> checkEmail(@Valid @RequestBody CheckEmailRequestDto checkEmailRequestDto) {
+        System.out.println("dfjslkfjslkdfjsf");
+        System.out.println(checkEmailRequestDto.getEmail());
         userservice.checkemail(checkEmailRequestDto);
         return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
     }

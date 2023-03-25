@@ -70,6 +70,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public void checkemail(CheckEmailRequestDto checkEmailRequestDto) {
         String email = checkEmailRequestDto.getEmail();
+        System.out.println("email  ="+ email);
         Optional<User> findemail = userRepository.findByEmail(email);
         if (findemail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
