@@ -43,4 +43,5 @@ public class CommentService {
         post.commentCountMinus();
         commentRepository.deleteById(commentId);
     }
+
 }

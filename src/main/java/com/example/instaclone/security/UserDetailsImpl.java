@@ -1,6 +1,5 @@
 package com.example.instaclone.security;
 
-
 import com.example.instaclone.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

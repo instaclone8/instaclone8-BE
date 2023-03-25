@@ -39,6 +39,7 @@ public class Post extends Timestamped {
     List<Likes> likes = new ArrayList<>();
 
     public Post (PostRequestDto reqDto, User user){
+
         this.content = reqDto.getContent();
         this.image = reqDto.getImage();
         this.user = user;
@@ -48,10 +49,13 @@ public class Post extends Timestamped {
 
     private boolean likeCheck = false;
 
+
     public void updatePost (PostRequestDto reqDto){
+
         this.content = reqDto.getContent();
         this.image = reqDto.getImage();
     }
+
 
     public void commentCountPlus(){
         this.commentCnt += 1;
@@ -62,11 +66,13 @@ public class Post extends Timestamped {
     }
 
     public void addLike(){
+
         this.likeCheck = true;
         this.likeCnt += 1;
     }
 
-    public void withdrawLike(){
+
+    public void withdrawLike() {
         this.likeCheck = false;
         this.likeCnt -= 1;
     }
