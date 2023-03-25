@@ -89,29 +89,27 @@ public class UserService {
 
     // 마이페이지 조회 (토큰o)
     @Transactional(readOnly = true)
-    public MyPageResponseDto getMyPage(Long userId, User currentUser) {
-       User user =  userRepository.findById(userId).orElseThrow(
+    public MyPageResponseDto getMyPage(Long userId, User user) {
+        user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreatedAtDesc(user);  // List<Post> findByUserOrderByCreatedAtDesc(User user);
+        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for (Post post : posts) {
-            PostResponseDto postResponseDto = new PostResponseDto();
-            postResponseDto.setId(post.getId());
-            postResponseDto.setImage(post.getImage());
-            postResponseDto.setLikeCnt(post.getLikes().size());
-            postResponseDto.setCommentCnt(post.getComments().size());
-            postResponseDtos.add(postResponseDto);
+//                if (post.getUser() == null) {
+//                    // user가 null인 경우 해당 게시글은 skip
+//                    continue;
+//                }
+//            PostResponseDto postResponseDto = new PostResponseDto();
+//            postResponseDto.setPostId(post.getId());
+//            postResponseDto.setImage(post.getImage());
+//            postResponseDto.setLikeCnt(post.getLikeCnt());
+//            postResponseDto.setCommentCnt(post.getComments().size());
+//            postResponseDtos.add(postResponseDto);
+
+            postResponseDtos.add(new PostResponseDto(post));
         }
-        return new MyPageResponseDto(user.getId(), user.getUsername(), posts.getImage(), postResponseDtos.size(), postResponseDtos);
+        return new MyPageResponseDto(user, postResponseDtos);
     }
-}// public class PostResponseDto {
-//
-//    private Long id;
-//    private String image;
-//    private int likeCnt;
-//    private int commentCnt;
-//
-//    // getter, setter 생략
-//}
+}
 
 

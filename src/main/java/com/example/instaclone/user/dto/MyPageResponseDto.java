@@ -17,11 +17,12 @@ public class MyPageResponseDto {
     private int postsCnt;
     private List<PostResponseDto> posts;
 
-    public MyPageResponseDto(Long userId, String username, String userImage, int postsCnt, List<PostResponseDto> posts) {
-        this.userId = userId;
-        this.username = username;
-        this.userImage = userImage;
-        this.postsCnt = postsCnt;
+    public MyPageResponseDto(User user, List<PostResponseDto> posts) {
+        this.userId = user.getId();
+        this.username = user.getUsername();
+        this.userImage = user.getUserImage();
+        this.postsCnt = posts.size();
         this.posts = posts;
     }
+
 }
