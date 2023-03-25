@@ -1,18 +1,19 @@
 package com.example.instaclone.user.controller;
 
-import com.example.instaclone.user.dto.MessageResponseDto;
-import com.example.instaclone.user.dto.LoginRequestDto;
-import com.example.instaclone.user.dto.SignupRequestDto;
+import com.example.instaclone.jwt.JwtUtil;
+import com.example.instaclone.security.UserDetailsImpl;
+import com.example.instaclone.user.dto.*;
+import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 

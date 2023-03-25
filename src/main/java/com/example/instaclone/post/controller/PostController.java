@@ -37,7 +37,7 @@ public class PostController {
     }
 
     @PatchMapping("/posts/{postId}")
-    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @RequestBody PostRequestDto reqDto){
+    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @RequestBody PostRequestDto reqDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         postService.updatePost(reqDto, postId);
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 수정 성공!"));
     }
