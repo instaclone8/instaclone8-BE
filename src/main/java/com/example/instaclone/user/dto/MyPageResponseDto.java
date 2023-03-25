@@ -19,6 +19,7 @@ public class MyPageResponseDto {
 
     public MyPageResponseDto(User user, List<PostResponseDto> posts) {
         this.id = user.getId();
+
         this.username = user.getUsername();
         this.userImage = user.getUserImage();
         this.postsCnt = posts.size();
