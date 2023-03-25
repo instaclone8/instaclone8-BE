@@ -50,6 +50,7 @@ public class Post extends Timestamped {
     private boolean likeCheck = false;
 
 
+
     public void updatePost (PostRequestDto reqDto){
 
         this.content = reqDto.getContent();
@@ -72,7 +73,9 @@ public class Post extends Timestamped {
     }
 
 
+
     public void withdrawLike() {
+
         this.likeCheck = false;
         this.likeCnt -= 1;
     }

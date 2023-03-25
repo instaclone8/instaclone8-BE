@@ -32,5 +32,4 @@ public class PostResponseDto {
         this.likeCnt = post.getLikeCnt();
         this.likeCheck = post.isLikeCheck();
     }
-
 }

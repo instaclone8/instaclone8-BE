@@ -24,5 +24,4 @@ public class CommentResponseDto {
 //        작성 날짜
         this.createdate = comment.getCreatedate().withNano(0);
     }
-
 }

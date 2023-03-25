@@ -9,6 +9,8 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
+
+
 repositories {
     mavenCentral()
 }
@@ -27,8 +29,6 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
-
-
 
     implementation group: 'org.json', name: 'json', version: '20220924'
 
