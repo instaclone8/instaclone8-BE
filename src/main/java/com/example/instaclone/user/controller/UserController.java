@@ -52,6 +52,8 @@ public class UserController {
     //유저이름 중복 ck
     @PostMapping("/checkusername")
     public ResponseEntity<MessageResponseDto> checkUsername(@Valid @RequestBody CheckUsernameRequestDto checkUsernameRequestDto) {
+        System.out.println("dfjslk유저네임fjsf");
+        System.out.println(checkUsernameRequestDto.getUsername());
         userservice.checkusername(checkUsernameRequestDto);
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
     }
