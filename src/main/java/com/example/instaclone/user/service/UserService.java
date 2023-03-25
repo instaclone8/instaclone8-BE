@@ -94,17 +94,6 @@ public class UserService {
         List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
             for (Post post : posts) {
-//                if (post.getUser() == null) {
-//                    // user가 null인 경우 해당 게시글은 skip
-//                    continue;
-//                }
-//            PostResponseDto postResponseDto = new PostResponseDto();
-//            postResponseDto.setPostId(post.getId());
-//            postResponseDto.setImage(post.getImage());
-//            postResponseDto.setLikeCnt(post.getLikeCnt());
-//            postResponseDto.setCommentCnt(post.getComments().size());
-//            postResponseDtos.add(postResponseDto);
-
                 postResponseDtos.add(new PostResponseDto(post));
         }
         return new MyPageResponseDto(user, postResponseDtos);
