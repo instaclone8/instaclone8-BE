@@ -18,7 +18,10 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+<<<<<<< HEAD
 application-mysql.properties
+=======
+>>>>>>> 35330e0 (FEAT FIRST COMMIT)
 .idea
 *.iws
 *.iml

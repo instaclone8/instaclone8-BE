@@ -1,12 +1,14 @@
 package com.example.instaclone.user.dto;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@NoArgsConstructor
 @Getter
 public class SignupRequestDto {
 

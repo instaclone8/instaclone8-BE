@@ -43,7 +43,6 @@ public class UserService {
         }
 
         Optional<User> foundEmail = userRepository.findByEmail(email);
-
         if (foundEmail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
         }
@@ -53,12 +52,12 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public void login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
-        String email = loginRequestDto.getEmail();
-        String password = loginRequestDto.getPassword();
+    public void login(LoginRequestDto loginRequestDto, HttpServletResponse response){
+            String email = loginRequestDto.getEmail();
+            String password = loginRequestDto.getPassword();
 
-        User user = userRepository.findByEmail(email).orElseThrow(
-                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+            User user = userRepository.findByEmail(email).orElseThrow(
+                    () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
@@ -90,23 +89,12 @@ public class UserService {
     // 마이페이지 조회 (토큰o)
     @Transactional(readOnly = true)
     public MyPageResponseDto getMyPage(Long userId, User user) {
-        user = userRepository.findById(userId).orElseThrow(
+       user =  userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user); //  List<Post> findByUserOrderByCreateDateDesc(User user);
+        List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
-        for (Post post : posts) {
-//                if (post.getUser() == null) {
-//                    // user가 null인 경우 해당 게시글은 skip
-//                    continue;
-//                }
-//            PostResponseDto postResponseDto = new PostResponseDto();
-//            postResponseDto.setPostId(post.getId());
-//            postResponseDto.setImage(post.getImage());
-//            postResponseDto.setLikeCnt(post.getLikeCnt());
-//            postResponseDto.setCommentCnt(post.getComments().size());
-//            postResponseDtos.add(postResponseDto);
-
-            postResponseDtos.add(new PostResponseDto(post));
+            for (Post post : posts) {
+                postResponseDtos.add(new PostResponseDto(post));
         }
         return new MyPageResponseDto(user, postResponseDtos);
     }
