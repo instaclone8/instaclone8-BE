@@ -19,6 +19,8 @@ public class User {
     @Column(unique = true, nullable = false)
     private String username;
 
+    private Long kakaoId;
+
     @Column(nullable = false)
     private String password;
 
@@ -39,6 +41,18 @@ public class User {
         this.password = password;
         this.userImage = userImage;
         this.email = email;
+    }
+
+    public User(String username, Long kakaoId, String password, String email) {
+        this.username = username;
+        this.kakaoId = kakaoId;
+        this.password = password;
+        this.email = email;
+    }
+
+    public User kakaoIdUpdate(Long kakaoId) {
+        this.kakaoId = kakaoId;
+        return this;
     }
 
 }

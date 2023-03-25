@@ -3,10 +3,12 @@ package com.example.instaclone.post.controller;
 import com.example.instaclone.post.dto.PostRequestDto;
 import com.example.instaclone.post.dto.PostResponseDto;
 import com.example.instaclone.post.service.PostService;
+import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.MessageResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/posts")
-    public ResponseEntity<MessageResponseDto> createPost(@RequestBody PostRequestDto reqDto){
-        postService.createPost(reqDto);
+    public ResponseEntity<MessageResponseDto> createPost(@RequestBody PostRequestDto reqDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        postService.createPost(reqDto, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
 

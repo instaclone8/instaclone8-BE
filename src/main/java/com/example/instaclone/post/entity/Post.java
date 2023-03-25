@@ -39,9 +39,10 @@ public class Post extends Timestamped {
 //    @OneToMany
 //    List<Likes> likes = new ArrayList<>();
 
-    public Post (PostRequestDto reqDto){
+    public Post (PostRequestDto reqDto, User user){
         this.content = reqDto.getContent();
         this.image = reqDto.getImage();
+        this.user = user;
     }
 
     public void updatePost (PostRequestDto reqDto){

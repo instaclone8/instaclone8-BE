@@ -4,6 +4,7 @@ import com.example.instaclone.post.dto.PostRequestDto;
 import com.example.instaclone.post.dto.PostResponseDto;
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.post.repository.PostRepository;
+import com.example.instaclone.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +19,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public void createPost(PostRequestDto reqDto) {
-        Post post = new Post(reqDto);
+    public void createPost(PostRequestDto reqDto, User user) {
+        Post post = new Post(reqDto, user);
         postRepository.save(post);
     }
 
