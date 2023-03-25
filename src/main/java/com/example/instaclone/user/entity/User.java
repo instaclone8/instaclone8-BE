@@ -2,10 +2,15 @@ package com.example.instaclone.user.entity;
 
 
 
+import com.example.instaclone.comment.entity.Comment;
+import com.example.instaclone.like.entity.Likes;
+import com.example.instaclone.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -22,11 +27,20 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String userImage;
 
     @Column(nullable = false)
     private String email;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Likes> likes = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -40,5 +54,4 @@ public class User {
         this.userImage = userImage;
         this.email = email;
     }
-
 }
