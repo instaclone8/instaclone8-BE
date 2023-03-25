@@ -55,7 +55,7 @@ public class WebSecurityConfig {
         http.authorizeRequests().antMatchers("/api/user/signup").permitAll()
                 .antMatchers( "/api/user/login").permitAll()
                 .antMatchers( "/api/user/checkemail").permitAll()
-                .antMatchers("api/user/checkusername").permitAll()
+                .antMatchers("/api/user/checkusername").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ApiException(), JwtAuthFilter.class);
