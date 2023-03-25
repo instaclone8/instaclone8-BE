@@ -92,7 +92,7 @@ public class UserService {
     public MyPageResponseDto getMyPage(Long userId, User user) {
         user = userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user);
+        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user); //  List<Post> findByUserOrderByCreateDateDesc(User user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
         for (Post post : posts) {
 //                if (post.getUser() == null) {
