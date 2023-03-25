@@ -27,6 +27,8 @@ public class UserService {
 
     private final JwtUtil jwtUtil;
 
+    private final PostRepository postRepository;
+
 
     @Transactional
     public void signup(SignupRequestDto signupRequestDto) {
@@ -89,7 +91,7 @@ public class UserService {
     public MyPageResponseDto getMyPage(Long userId, User user) {
        user =  userRepository.findById(userId).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreateDateDesc(user);
+        List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
             for (Post post : posts) {
 //                if (post.getUser() == null) {

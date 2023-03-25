@@ -2,10 +2,15 @@ package com.example.instaclone.user.entity;
 
 
 
+import com.example.instaclone.comment.entity.Comment;
+import com.example.instaclone.like.entity.Likes;
+import com.example.instaclone.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -49,6 +54,13 @@ public class User {
         this.username = username;
         this.password = password;
         this.userImage = userImage;
+        this.email = email;
+    }
+
+    public User(String username, Long kakaoId, String password, String email) {
+        this.username = username;
+        this.kakaoId = kakaoId;
+        this.password = password;
         this.email = email;
     }
 

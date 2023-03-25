@@ -1,19 +1,11 @@
 package com.example.instaclone.post.dto;
 
-import com.example.instaclone.comment.dto.CommentResponseDto;
-import com.example.instaclone.comment.entity.Comment;
-import com.example.instaclone.like.dto.LikeResponseDto;
-import com.example.instaclone.like.entity.Likes;
 import com.example.instaclone.post.entity.Post;
-import com.example.instaclone.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter @Setter

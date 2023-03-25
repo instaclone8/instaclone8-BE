@@ -6,7 +6,6 @@ import com.example.instaclone.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.post.repository.PostRepository;
 import com.example.instaclone.user.entity.User;
-import com.example.instaclone.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
