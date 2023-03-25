@@ -1,19 +1,18 @@
 package com.example.instaclone.user.controller;
 
-import com.example.instaclone.jwt.JwtUtil;
 import com.example.instaclone.user.dto.MessageResponseDto;
 import com.example.instaclone.user.dto.LoginRequestDto;
 import com.example.instaclone.user.dto.SignupRequestDto;
-import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -38,6 +37,26 @@ public class UserController {
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "로그인 성공"));
     }
 
+
+    // 유저이메일 중복 ck
+    @PostMapping("/checkemail")
+    public ResponseEntity<MessageResponseDto> checkEmail(@Valid @RequestBody CheckEmailRequestDto checkEmailRequestDto) {
+        userservice.checkemail(checkEmailRequestDto);
+        return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
+    }
+
+    //유저이름 중복 ck
+    @PostMapping("/checkusername")
+    public ResponseEntity<MessageResponseDto> checkUsername(@Valid @RequestBody CheckUsernameRequestDto checkUsernameRequestDto) {
+        userservice.checkusername(checkUsernameRequestDto);
+        return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
+    }
+
+    // 마이페이지 조회 (토큰o)
+    @GetMapping("/mypage/{userId}")
+    public MyPageResponseDto getMyPage(@PathVariable Long userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userservice.getMyPage(userId, userDetails.getUser());
+    }
     //카카오톡 로그인
     @GetMapping("/kakao/callback")
     public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
