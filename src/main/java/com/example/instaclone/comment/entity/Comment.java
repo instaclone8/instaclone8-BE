@@ -6,6 +6,7 @@ import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;

@@ -12,7 +12,7 @@ public class CommentResponseDto {
     private String comment;
     private String username;
     private String userimage;
-    private LocalDateTime createdDate;
+    private LocalDateTime createdate;
 
     public CommentResponseDto(Comment comment) {
         this.id = comment.getId();
@@ -22,6 +22,6 @@ public class CommentResponseDto {
 //        유저 이미지
         this.userimage = comment.getUser().getUserImage();
 //        작성 날짜
-        this.createdDate = comment.getCreateDate().withNano(0);
+        this.createdate = comment.getCreatedate().withNano(0);
     }
 }

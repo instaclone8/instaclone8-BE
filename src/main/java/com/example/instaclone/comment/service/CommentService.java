@@ -23,7 +23,7 @@ public class CommentService {
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
         );
-        post.commentCount();
+        post.commentCountPlus();
         Comment comment = new Comment(post, user, commentRequestDto);
         commentRepository.save(comment);
         post.getComments().add(comment);
@@ -40,6 +40,7 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new IllegalArgumentException("댓글을 찾을 수 없습니다.")
         );
+        post.commentCountMinus();
         commentRepository.deleteById(commentId);
     }
 }

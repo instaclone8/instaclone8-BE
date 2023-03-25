@@ -30,23 +30,25 @@ public class User {
     @Column(nullable = false)
     private String email;
 
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Likes> likes = new ArrayList<>();
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    private List<Comment> comments = new ArrayList<>();
+
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
     }
 
-//    public User(String username, String password, String userImage, String email) {
-//        this.username = username;
-//        this.password = password;
-//        this.userImage = userImage;
-//        this.email = email;
-//    }
-
-    public User(String username, Long kakaoId, String password, String email) {
+    public User(String username, String password, String userImage, String email) {
         this.username = username;
-        this.kakaoId = kakaoId;
         this.password = password;
+        this.userImage = userImage;
         this.email = email;
     }
 
