@@ -57,7 +57,7 @@ public class UserService {
             String password = loginRequestDto.getPassword();
 
             User user = userRepository.findByEmail(email).orElseThrow(
-                    () -> new IllegalArgumentException("사용자를 ^^ 찾을 수 없습니다"));
+                    () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
