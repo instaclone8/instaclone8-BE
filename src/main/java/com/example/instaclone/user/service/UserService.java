@@ -8,6 +8,7 @@ import com.example.instaclone.user.dto.*;
 import com.example.instaclone.user.entity.User;
 import com.example.instaclone.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -99,6 +100,15 @@ public class UserService {
                 postResponseDtos.add(new PostResponseDto(post));
         }
         return new MyPageResponseDto(user, postResponseDtos);
+    }
+
+    //닉네임받기
+    @Transactional(readOnly = true)
+    public UsernameResponseDto getUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        String foundUsername = user.getUsername();
+        return new UsernameResponseDto(foundUsername);
     }
 }
 

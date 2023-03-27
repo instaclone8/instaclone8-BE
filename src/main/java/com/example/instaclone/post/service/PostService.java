@@ -7,11 +7,14 @@ import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.post.repository.PostRepository;
 import com.example.instaclone.user.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -25,14 +28,22 @@ public class PostService {
         postRepository.save(post);
     }
 
+    //무한 스크롤 : 최신 순선 내림차순 10개 씩 잘라서 조회
+    @Transactional(readOnly = true)
+    public List<PostResponseDto> fetchPages(Long lastPostId, int size){
+        PageRequest pageRequest = PageRequest.of(0,10);
+        Page<Post> entityPage = postRepository.findByIdLessThanOrderByIdDesc(lastPostId, pageRequest);
+        List<Post> entityList = entityPage.getContent();
+        return entityList.stream()
+                .map(PostResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    //최신 작성 순서 내림차순 조회
     @Transactional(readOnly = true)
     public List<PostResponseDto> getPosts(){
-        List<PostResponseDto> resDtoList = new ArrayList<>();
-        List<Post> postList = postRepository.findAll();
-        for(Post post : postList){
-            resDtoList.add(new PostResponseDto(post));
-        }
-        return resDtoList;
+        List<Post> posts = postRepository.findAllByOrderByCreatedateDesc();
+        return posts.stream().map(PostResponseDto::new).toList();
     }
 
     @Transactional(readOnly = true)
