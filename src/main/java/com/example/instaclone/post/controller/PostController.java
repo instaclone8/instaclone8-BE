@@ -29,6 +29,11 @@ public class PostController {
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
 
+    @GetMapping("/posts/page")
+    public List<PostResponseDto> fetchPages(@RequestParam Long lastPostId){
+        return postService.fetchPages(lastPostId, 10);
+    }
+
     @GetMapping("/posts")
     public List<PostResponseDto> getPosts(){
         return postService.getPosts();

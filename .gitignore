@@ -18,9 +18,8 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-S3/
-application-mysql.properties
 application.yml
+application-mysql.properties
 .idea
 *.iws
 *.iml
