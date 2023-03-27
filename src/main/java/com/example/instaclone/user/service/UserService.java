@@ -71,6 +71,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public void checkemail(CheckEmailRequestDto checkEmailRequestDto) {
         String email = checkEmailRequestDto.getEmail();
+        System.out.println("email  ="+ email);
         Optional<User> findemail = userRepository.findByEmail(email);
         if (findemail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
@@ -81,6 +82,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public void checkusername(CheckUsernameRequestDto checkUsernameRequestDto) {
         String username = checkUsernameRequestDto.getUsername();
+        System.out.println("username  ="+ username);
         Optional<User> findusername = userRepository.findByUsername(username);
         if (findusername.isPresent()) {
             throw new IllegalArgumentException("유저이름이 중복됩니다");
