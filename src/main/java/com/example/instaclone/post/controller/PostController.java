@@ -23,6 +23,7 @@ public class PostController {
     private final PostService postService;
     private final LikeService likeService;
 
+
     @PostMapping("/posts")
     public ResponseEntity<MessageResponseDto> createPost(@RequestBody PostRequestDto reqDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         postService.createPost(reqDto, userDetails.getUser());
@@ -60,6 +61,5 @@ public class PostController {
     public void setLike(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
         likeService.setLike(postId, userDetails.getUser());
     }
-
 }
 
