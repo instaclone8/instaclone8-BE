@@ -53,9 +53,11 @@ public class WebSecurityConfig {
         // 기본 설정인 Session 방식은 사용하지 않고 JWT 방식을 사용하기 위한 설정
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/user/signup").permitAll()
-                .antMatchers( "/api/user/login","/api/user/username").permitAll()
-                .antMatchers( "/api/user/checkemail","/api/user/checkusername").permitAll()
+                .antMatchers( "/api/user/login").permitAll()
+                .antMatchers( "/api/user/checkemail").permitAll()
                 .antMatchers( "/api/user/kakao/callback").permitAll()
+                .antMatchers("/api/user/checkusername").permitAll()
+//                .antMatchers( "/s3/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ApiException(), JwtAuthFilter.class);

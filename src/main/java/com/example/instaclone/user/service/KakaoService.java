@@ -58,6 +58,7 @@ public class KakaoService {
         body.add("grant_type", "authorization_code");
         body.add("client_id", "5510a2d8fa3f608595dda5d4b933f6c0");
         body.add("redirect_uri", "http://localhost:8080/api/user/kakao/callback");
+
         body.add("code", code);
 
 
