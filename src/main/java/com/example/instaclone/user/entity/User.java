@@ -1,7 +1,5 @@
 package com.example.instaclone.user.entity;
 
-
-
 import com.example.instaclone.comment.entity.Comment;
 import com.example.instaclone.like.entity.Likes;
 import com.example.instaclone.post.entity.Post;
