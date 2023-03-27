@@ -71,4 +71,10 @@ public class UserController {
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "카카오 로그인 성공"));
     }
 
+    //닉네임받기
+    @GetMapping("/username")
+    public UsernameResponseDto getUsername(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userservice.getUsername(userDetails.getUsername());
+    }
+
 }
