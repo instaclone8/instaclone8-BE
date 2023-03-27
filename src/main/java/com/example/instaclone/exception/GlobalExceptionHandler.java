@@ -35,12 +35,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(messageResponseDto, HttpStatus.BAD_REQUEST);
     }
 
-    //파일 업로드 용량 초과시 발생
-    @ExceptionHandler(MaxUploadSizeExceededException.class)
-    protected ResponseEntity<MessageResponseDto> handleMaxUploadSizeExceededException(
-            MaxUploadSizeExceededException e) {
-        String message = e.getMessage().split(":")[0];
-        MessageResponseDto messageResponseDto = new MessageResponseDto(HttpStatus.PAYLOAD_TOO_LARGE, message);
-        return new ResponseEntity<>(messageResponseDto, HttpStatus.PAYLOAD_TOO_LARGE);
-    }
+//    //파일 업로드 용량 초과시 발생
+//    @ExceptionHandler(MaxUploadSizeExceededException.class)
+//    protected ResponseEntity<MessageResponseDto> handleMaxUploadSizeExceededException(
+//            MaxUploadSizeExceededException e) {
+//        String message = e.getMessage().split(":")[0];
+//        MessageResponseDto messageResponseDto = new MessageResponseDto(HttpStatus.PAYLOAD_TOO_LARGE, message);
+//        return new ResponseEntity<>(messageResponseDto, HttpStatus.PAYLOAD_TOO_LARGE);
+//    }
 }
