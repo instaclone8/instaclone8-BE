@@ -54,11 +54,11 @@ public class WebSecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests().antMatchers("/api/user/signup").permitAll()
                 .antMatchers( "/api/user/login").permitAll()
+                .antMatchers( "/api/user/kakao/callback").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ApiException(), JwtAuthFilter.class);
         http.cors();
-
         return http.build();
     }
 

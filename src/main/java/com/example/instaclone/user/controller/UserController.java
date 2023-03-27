@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +61,7 @@ public class UserController {
     }
     //카카오톡 로그인
     @GetMapping("/kakao/callback")
-    public ResponseEntity<MessageResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
         String createToken = kakaoService.kakaoLogin(code, response);
 
@@ -68,7 +69,11 @@ public class UserController {
         Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
         cookie.setPath("/");
         response.addCookie(cookie);
-        return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "카카오 로그인 성공"));
+        return "카카오 인증 완료" + code;
     }
 
+    @GetMapping("/kakao")
+    public ModelAndView main(){
+        return new ModelAndView("main");
+    }
 }
