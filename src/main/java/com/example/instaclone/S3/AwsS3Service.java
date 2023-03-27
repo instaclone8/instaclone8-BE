@@ -32,7 +32,7 @@
 //    public List<String> uploadFile(List<MultipartFile> multipartFile) {
 //        List<String> fileNameList = new ArrayList<>();
 //
-//        // forEach 구문을 통해 multipartFile로 넘어온 파일들 하나씩 fileNameList에 추가
+//        // forEach 구문을 통해 multipartFile로 넘어온 파일들 하나씩 fileNameList 에 추가
 //        multipartFile.forEach(file -> {
 //            String fileName = createFileName(file.getOriginalFilename());
 //            ObjectMetadata objectMetadata = new ObjectMetadata();
@@ -46,8 +46,7 @@
 //                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "파일 업로드에 실패했습니다.");
 //            }
 //
-//            fileNameList.add(fileName);
-//        });
+//            fileNameList.add(fileName);});
 //
 //        return fileNameList;
 //    }
