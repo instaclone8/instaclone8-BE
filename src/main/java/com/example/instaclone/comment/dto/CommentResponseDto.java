@@ -2,10 +2,12 @@ package com.example.instaclone.comment.dto;
 
 import com.example.instaclone.comment.entity.Comment;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 public class CommentResponseDto {
 
     private Long id;

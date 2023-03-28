@@ -1,7 +1,7 @@
 package com.example.instaclone.user.entity;
 
 import com.example.instaclone.comment.entity.Comment;
-import com.example.instaclone.like.entity.Likes;
+import com.example.instaclone.like.Likes;
 import com.example.instaclone.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,14 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 @Entity(name = "users")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true, nullable = false)
     private String username;
 
+    @Column(nullable = true)
     private Long kakaoId;
 
     @Column(nullable = false)
@@ -33,13 +32,13 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany
     private List<Likes> likes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany
     private List<Comment> comments = new ArrayList<>();
 
     public User(String username, String password, String email) {
