@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,7 +20,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
@@ -74,7 +75,13 @@ public class UserController {
         Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
         cookie.setPath("/");
         response.addCookie(cookie);
-        return "http://localhost:3000/kakao";
+
+        return "redirect:/api/user/kakao";
+    }
+
+    @GetMapping("/kakao")
+    public String kakao() {
+        return "kakao";
     }
 
     // 닉네임 받기
