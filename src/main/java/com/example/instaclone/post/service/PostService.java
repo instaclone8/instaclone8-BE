@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
 
+
     private final UploadService s3Service;
     private final PostRepository postRepository;
 
