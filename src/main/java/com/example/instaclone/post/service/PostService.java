@@ -2,6 +2,7 @@ package com.example.instaclone.post.service;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.instaclone.aws.UploadService;
+import com.example.instaclone.post.dto.PostRequestDto;
 import com.example.instaclone.post.dto.PostResponseDto;
 import com.example.instaclone.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.post.entity.Post;
@@ -26,12 +27,11 @@ import java.util.stream.Collectors;
 @Service
 public class PostService {
 
-
     private final UploadService s3Service;
     private final PostRepository postRepository;
 
     @Transactional
-    public void createPost(MultipartFile image, String content, User user){
+    public void createPost(String content, MultipartFile image, User user){
         String fileName = createFileName(image);
         extensionCheck(fileName);
 

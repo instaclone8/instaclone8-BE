@@ -7,6 +7,7 @@ import com.example.instaclone.post.service.PostService;
 import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.MessageResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -23,9 +24,12 @@ public class PostController {
     private final PostService postService;
     private final LikeService likeService;
 
-    @PostMapping("/posts")
-    public ResponseEntity<MessageResponseDto> createPost(@ModelAttribute MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
-        postService.createPost(image, content, userDetails.getUser());
+    @PostMapping( path = "/posts",  consumes = {"multipart/form-data"})
+    public ResponseEntity<MessageResponseDto> createPost(@RequestPart MultipartFile image, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        System.out.println("=======클릭은 되고 있나======");
+        System.out.println(content);
+        System.out.println(image.getOriginalFilename());
+        postService.createPost(content, image, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
 

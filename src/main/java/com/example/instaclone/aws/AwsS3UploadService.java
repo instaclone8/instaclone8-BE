@@ -18,7 +18,7 @@ public class AwsS3UploadService implements UploadService {
     private final AmazonS3 amazonS3;
     private final S3Component component;
 
-     @Value("${cloud.aws.s3.bucket}")
+    @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
     @Override
@@ -36,5 +36,3 @@ public class AwsS3UploadService implements UploadService {
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }
-
-
