@@ -8,6 +8,7 @@ import com.example.instaclone.user.dto.*;
 import com.example.instaclone.user.entity.User;
 import com.example.instaclone.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +71,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public void checkemail(CheckEmailRequestDto checkEmailRequestDto) {
         String email = checkEmailRequestDto.getEmail();
+        System.out.println("email  ="+ email);
         Optional<User> findemail = userRepository.findByEmail(email);
         if (findemail.isPresent()) {
             throw new IllegalArgumentException("이메일이 중복됩니다");
@@ -80,6 +82,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public void checkusername(CheckUsernameRequestDto checkUsernameRequestDto) {
         String username = checkUsernameRequestDto.getUsername();
+        System.out.println("username  ="+ username);
         Optional<User> findusername = userRepository.findByUsername(username);
         if (findusername.isPresent()) {
             throw new IllegalArgumentException("유저이름이 중복됩니다");
@@ -88,8 +91,8 @@ public class UserService {
 
     // 마이페이지 조회 (토큰o)
     @Transactional(readOnly = true)
-    public MyPageResponseDto getMyPage(Long userId, User user) {
-       user =  userRepository.findById(userId).orElseThrow(
+    public MyPageResponseDto getMyPage(String username, User user) {
+       user =  userRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
         List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
@@ -98,6 +101,14 @@ public class UserService {
         }
         return new MyPageResponseDto(user, postResponseDtos);
     }
-}
 
+    //닉네임받기
+    @Transactional(readOnly = true)
+    public UsernameResponseDto getUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+        String foundUsername = user.getUsername();
+        return new UsernameResponseDto(foundUsername);
+    }
+}
 

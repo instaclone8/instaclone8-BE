@@ -35,12 +35,13 @@ public class Post extends Timestamped {
     private String imageName;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    List<Comment> comments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    List<Likes> likes = new ArrayList<>();
+    private List<Likes> likes = new ArrayList<>();
 
     public Post (PostRequestDto reqDto, User user){
+
         this.content = reqDto.getContent();
 //        this.image = reqDto.getImage();
         this.user = user;
@@ -62,6 +63,7 @@ public class Post extends Timestamped {
         this.imageName = imageName;
     }
 
+
     public void commentCountPlus(){
         this.commentCnt += 1;
     }
@@ -71,11 +73,15 @@ public class Post extends Timestamped {
     }
 
     public void addLike(){
+
         this.likeCheck = true;
         this.likeCnt += 1;
     }
 
-    public void withdrawLike(){
+
+
+    public void withdrawLike() {
+
         this.likeCheck = false;
         this.likeCnt -= 1;
     }
