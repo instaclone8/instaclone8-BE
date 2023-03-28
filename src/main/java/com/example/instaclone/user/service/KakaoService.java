@@ -30,8 +30,6 @@ public class KakaoService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
-    @Value("${kakao.client.id}")
-    private String clientId;
 
 
     public String kakaoLogin(String code) throws JsonProcessingException {
@@ -61,7 +59,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "5510a2d8fa3f608595dda5d4b933f6c0");
-        body.add("redirect_uri", "http://localhost:3000/user/kakao/callback");
+        body.add("redirect_uri", "http://localhost:3000/kakao");
         body.add("code", code);
 
 
