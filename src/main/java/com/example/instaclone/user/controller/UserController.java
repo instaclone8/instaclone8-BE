@@ -85,6 +85,4 @@ public class UserController {
     public UsernameResponseDto getUsername(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return userservice.getUsername(userDetails.getUsername());
     }
-
-
 }
