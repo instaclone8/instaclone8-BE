@@ -14,4 +14,5 @@ public class S3Component {
     // @Value("${cloud.aws.s3.bucket}")로도 가능
     private String bucket;
 
+
 }
