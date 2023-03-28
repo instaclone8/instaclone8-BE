@@ -28,7 +28,6 @@ public class AmazonS3Controller {
 //        multipartResolver.setMaxUploadSize(1000000);
 //        return multipartResolver;
 //    }
-
     //Amazon S3에 파일 업로드
     //@ApiOperation(value = "Amazon S3에 파일 업로드", notes = "Amazon S3에 파일 업로드 ")
     @PostMapping("/file")
