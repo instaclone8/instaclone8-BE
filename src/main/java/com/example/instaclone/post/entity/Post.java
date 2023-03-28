@@ -10,7 +10,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -36,10 +35,10 @@ public class Post extends Timestamped {
     private String imageName;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<Comment> comments = new ArrayList<>();
+    List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    private List<Likes> likes = new ArrayList<>();
+    List<Likes> likes = new ArrayList<>();
 
     public Post (PostRequestDto reqDto, User user){
         this.content = reqDto.getContent();
