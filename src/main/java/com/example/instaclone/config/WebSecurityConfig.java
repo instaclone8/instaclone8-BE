@@ -57,6 +57,8 @@ public class WebSecurityConfig {
                 .antMatchers( "/api/user/checkemail").permitAll()
                 .antMatchers( "/api/user/kakao/callback").permitAll()
                 .antMatchers("/api/user/checkusername").permitAll()
+                .antMatchers("/api/user/kakao").permitAll()
+
 //                .antMatchers( "/s3/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)

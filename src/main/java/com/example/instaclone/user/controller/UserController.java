@@ -76,13 +76,10 @@ public class UserController {
         cookie.setPath("/");
         response.addCookie(cookie);
 
-        return "redirect:/api/user/kakao";
+        return "redirect:http://localhost:3000";
     }
 
-    @GetMapping("/kakao")
-    public String kakao() {
-        return "kakao";
-    }
+
 
     // 닉네임 받기
     @GetMapping("/username")
