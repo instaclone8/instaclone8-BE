@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -35,7 +34,7 @@ public class KakaoService {
 
     public String kakaoLogin(String code) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
-        String accessToken = getToken(code);
+        String accessToken = getToken(code, "http://localhost:3000/kakao");
 
         // 2. 토큰으로 카카오 API 호출 : "액세스 토큰"으로 "카카오 사용자 정보" 가져오기
         KakaoUserDto kakaoUserDto = getKakaoUserInfo(accessToken);
@@ -51,7 +50,7 @@ public class KakaoService {
     }
 
     // 1. "인가 코드"로 "액세스 토큰" 요청
-    private String getToken(String code) throws JsonProcessingException {
+    private String getToken(String code, String redirect_uri) throws JsonProcessingException {
         // HTTP Header 생성
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
@@ -60,7 +59,7 @@ public class KakaoService {
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "authorization_code");
         body.add("client_id", "5510a2d8fa3f608595dda5d4b933f6c0");
-        body.add("redirect_uri", "http://localhost:3000/kakao");
+        body.add("redirect_uri", redirect_uri);
         body.add("code", code);
 
 
