@@ -24,7 +24,7 @@ public class PostController {
     private final LikeService likeService;
 
     @PostMapping("/posts")
-    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = true) MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         postService.createPost(image, content, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
