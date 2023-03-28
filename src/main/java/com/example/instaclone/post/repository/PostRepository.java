@@ -15,5 +15,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByUserOrderByCreatedateDesc(User user);
 
+
     Page<Post> findByIdLessThanOrderByIdDesc(Long lastPostId, PageRequest pageRequest);
+
 }

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -33,4 +34,13 @@ public class GlobalExceptionHandler {
         MessageResponseDto messageResponseDto = new MessageResponseDto(HttpStatus.BAD_REQUEST, message);
         return new ResponseEntity<>(messageResponseDto, HttpStatus.BAD_REQUEST);
     }
+
+//    //파일 업로드 용량 초과시 발생
+//    @ExceptionHandler(MaxUploadSizeExceededException.class)
+//    protected ResponseEntity<MessageResponseDto> handleMaxUploadSizeExceededException(
+//            MaxUploadSizeExceededException e) {
+//        String message = e.getMessage().split(":")[0];
+//        MessageResponseDto messageResponseDto = new MessageResponseDto(HttpStatus.PAYLOAD_TOO_LARGE, message);
+//        return new ResponseEntity<>(messageResponseDto, HttpStatus.PAYLOAD_TOO_LARGE);
+//    }
 }
