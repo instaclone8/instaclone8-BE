@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,11 +26,23 @@ public class PostController {
     private final PostService postService;
     private final LikeService likeService;
 
-    @PostMapping(path = "/posts", consumes = {"multipart/form-data"})
-    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+    @PostMapping("/posts")
+    public ResponseEntity<MessageResponseDto> createPost(HttpServletRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        MultipartFile image = multipartRequest.getFile("image");
+        String content = multipartRequest.getParameter("content");
+
         postService.createPost(image, content, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
+
+
+
+//    @PostMapping(path = "/posts", consumes = {"multipart/form-data"})
+//    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+//        postService.createPost(image, content, userDetails.getUser());
+//        return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
+//    }
 
     @GetMapping("/posts/page")
     public List<PostResponseDto> fetchPages(@RequestParam Long lastPostId){
