@@ -32,14 +32,14 @@
 //    //Amazon S3에 파일 업로드
 //    //@ApiOperation(value = "Amazon S3에 파일 업로드", notes = "Amazon S3에 파일 업로드 ")
 //    @PostMapping("/file")
-//    public ResponseEntity<List<String>> uploadFile(@RequestPart(value = "file", required = true) List<MultipartFile> multipartFile) {
+//    public ResponseEntity<List<String>> uploadFile(@RequestPart(value = "file", required false) List<MultipartFile> multipartFile) {
 //        return ResponseEntity.ok().body(awsS3Service.uploadFile(multipartFile));
 //    }
 //
 //    //Amazon S3에 업로드 된 파일을 삭제
 //    //@ApiOperation(value = "Amazon S3에 업로드 된 파일을 삭제", notes = "Amazon S3에 업로드된 파일 삭제")
 //    @DeleteMapping("/file")
-//    public ResponseEntity<Void> deleteFile(@RequestParam(name = "fileName", required = true) String fileName) {
+//    public ResponseEntity<Void> deleteFile(@RequestParam(name = "fileName", required = false) String fileName) {
 //        awsS3Service.deleteFile(fileName);
 //        return ResponseEntity.ok().build();
 //    }
