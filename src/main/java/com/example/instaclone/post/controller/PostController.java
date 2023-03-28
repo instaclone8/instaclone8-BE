@@ -26,10 +26,7 @@ public class PostController {
 
     @PostMapping(path = "/posts")
     public ResponseEntity<MessageResponseDto> createPost(@ModelAttribute MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
-        System.out.println("=======클릭은 되고 있나======");
         postService.createPost(image, content, userDetails.getUser());
-        return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
-    }
 
     @GetMapping("/posts/page")
     public List<PostResponseDto> fetchPages(@RequestParam Long lastPostId){
