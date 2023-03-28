@@ -71,14 +71,11 @@ public class UserController {
     @GetMapping("/kakao/callback")
     public ResponseEntity<MessageResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         // code: 카카오 서버로부터 받은 인가 코드
-        String createToken = kakaoService.kakaoLogin(code);
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
-
+        kakaoService.kakaoLogin(code, response);
 //        // Cookie 생성 및 직접 브라우저에 Set
 //        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
 //        cookie.setPath("/");
 //        response.addCookie(cookie);
-
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "카카오 로그인 성공"));
     }
 
