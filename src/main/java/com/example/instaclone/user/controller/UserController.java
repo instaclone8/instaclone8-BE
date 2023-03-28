@@ -5,6 +5,7 @@ import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.*;
 ////import com.example.instaclone.user.service.KakaoService;
 //import com.example.instaclone.user.service.KakaoService;
+import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/user")
 public class UserController {
     private final UserService userservice;
-//    private final KakaoService kakaoService;
+    private final KakaoService kakaoService;
 
     //회원가입
     @PostMapping("/signup")
