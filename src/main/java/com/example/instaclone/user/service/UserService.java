@@ -30,7 +30,6 @@ public class UserService {
 
     private final PostRepository postRepository;
 
-
     @Transactional
     public void signup(SignupRequestDto signupRequestDto) {
         String username = signupRequestDto.getUsername();
