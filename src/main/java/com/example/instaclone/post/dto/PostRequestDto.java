@@ -8,6 +8,5 @@ import lombok.NoArgsConstructor;
 public class PostRequestDto {
 
     private String content;
-    private String image;
 
 }

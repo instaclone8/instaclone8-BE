@@ -23,11 +23,11 @@ public class Comment extends Timestamped {
     private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "POST_ID", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Comment(Post post, User user, CommentRequestDto commentRequestDto) {

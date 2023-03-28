@@ -1,16 +1,17 @@
 package com.example.instaclone.post.entity;
 
 import com.example.instaclone.comment.entity.Comment;
-import com.example.instaclone.like.entity.Likes;
+import com.example.instaclone.like.Likes;
 import com.example.instaclone.post.dto.PostRequestDto;
 import com.example.instaclone.user.entity.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Entity
@@ -23,7 +24,7 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String image;
 
     @ManyToOne
@@ -32,15 +33,23 @@ public class Post extends Timestamped {
 
     private int commentCnt;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    List<Comment> comments = new ArrayList<>();
+    private String imageName;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    List<Likes> likes = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    private List<Likes> likes = new ArrayList<>();
 
     public Post (PostRequestDto reqDto, User user){
         this.content = reqDto.getContent();
-        this.image = reqDto.getImage();
+//        this.image = reqDto.getImage();
+        this.user = user;
+    }
+    public Post (String content, String image, String imageName, User user){
+        this.content = content;
+        this.image = image;
+        this.imageName = imageName;
         this.user = user;
     }
 
@@ -48,9 +57,10 @@ public class Post extends Timestamped {
 
     private boolean likeCheck = false;
 
-    public void updatePost (PostRequestDto reqDto){
-        this.content = reqDto.getContent();
-        this.image = reqDto.getImage();
+    public void updatePost (String image, String imageName, String content){
+        this.content = content;
+        this.image = image;
+        this.imageName = imageName;
     }
 
     public void commentCountPlus(){

@@ -1,6 +1,6 @@
-package com.example.instaclone.like.repository;
+package com.example.instaclone.like;
 
-import com.example.instaclone.like.entity.Likes;
+import com.example.instaclone.like.Likes;
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
