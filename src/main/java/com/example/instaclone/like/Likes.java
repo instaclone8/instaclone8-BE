@@ -1,4 +1,4 @@
-package com.example.instaclone.like.entity;
+package com.example.instaclone.like;
 
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.user.entity.User;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Getter
 @Entity
 public class Likes {
@@ -22,20 +23,8 @@ public class Likes {
     @JoinColumn(name = "post_id")
     private Post post;
 
-    private boolean likeCheck = false;
-
     public Likes(Post post, User user){
         this.post = post;
         this.user = user;
-        this.likeCheck = true;
     }
-
-    public Likes(){}
-
-    public void changeLike(Likes like){
-        if(like.likeCheck){
-            this.likeCheck = false;
-        } this.likeCheck = true;
-     }
-
 }

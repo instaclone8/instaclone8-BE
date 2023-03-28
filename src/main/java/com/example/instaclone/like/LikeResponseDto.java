@@ -1,6 +1,5 @@
-package com.example.instaclone.like.dto;
+package com.example.instaclone.like;
 
-import com.example.instaclone.like.entity.Likes;
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.user.entity.User;
 import lombok.Getter;
@@ -16,9 +15,4 @@ public class LikeResponseDto {
     private Post post;
     private boolean likeCheck = false;
 
-    public LikeResponseDto(Likes like) {
-        this.user = like.getUser();
-        this.post = like.getPost();
-        this.likeCheck = like.isLikeCheck();
-    }
 }

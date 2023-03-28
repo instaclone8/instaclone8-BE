@@ -3,6 +3,8 @@ package com.example.instaclone.user.controller;
 import com.example.instaclone.jwt.JwtUtil;
 import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.*;
+////import com.example.instaclone.user.service.KakaoService;
+//import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -79,8 +81,6 @@ public class UserController {
 
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "카카오 로그인 성공"));
     }
-
-
 
     // 닉네임 받기
     @GetMapping("/username")

@@ -5,6 +5,7 @@ import com.example.instaclone.comment.service.CommentService;
 import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.MessageResponseDto;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/posts")
+@RestController
 public class CommentController {
 
     private final CommentService commentService;

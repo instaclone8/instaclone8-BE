@@ -1,7 +1,7 @@
-package com.example.instaclone.like.service;
+package com.example.instaclone.like;
 
-import com.example.instaclone.like.entity.Likes;
-import com.example.instaclone.like.repository.LikeRepository;
+import com.example.instaclone.like.Likes;
+import com.example.instaclone.like.LikeRepository;
 import com.example.instaclone.post.entity.Post;
 import com.example.instaclone.post.repository.PostRepository;
 import com.example.instaclone.user.entity.User;
@@ -33,7 +33,7 @@ public class LikeService {
         } else{
             post.withdrawLike();
             likeRepository.delete(clickedLike);
-            System.out.println("좋아요가 삭제됐습니다..");
+            System.out.println("좋아요가 삭제됐습니다.");
         }
     }
 }

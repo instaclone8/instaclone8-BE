@@ -25,6 +25,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class KakaoService {
+
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
@@ -133,7 +134,7 @@ public class KakaoService {
                 // email: kakao email
                 String email = kakaoUserDto.getEmail();
 
-                kakaoUser = new User(kakaoUserDto.getNicknmae(), kakaoId, encodedPassword, email);
+                kakaoUser = new User(kakaoUserDto.getNickname(), kakaoId, encodedPassword, email);
             }
 
             userRepository.save(kakaoUser);
