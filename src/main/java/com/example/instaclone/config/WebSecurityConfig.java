@@ -62,6 +62,7 @@ public class WebSecurityConfig {
                 .addFilterBefore(new ApiException(), JwtAuthFilter.class);
         http.cors();
 
+
         return http.build();
     }
 

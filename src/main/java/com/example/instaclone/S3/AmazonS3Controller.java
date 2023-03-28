@@ -28,11 +28,10 @@
 ////        multipartResolver.setMaxUploadSize(1000000);
 ////        return multipartResolver;
 ////    }
-//
 //    //Amazon S3에 파일 업로드
 //    //@ApiOperation(value = "Amazon S3에 파일 업로드", notes = "Amazon S3에 파일 업로드 ")
 //    @PostMapping("/file")
-//    public ResponseEntity<List<String>> uploadFile(@RequestPart(value = "file", required false) List<MultipartFile> multipartFile) {
+//    public ResponseEntity<List<String>> uploadFile(@RequestPart(value = "file", required= false) List<MultipartFile> multipartFile) {
 //        return ResponseEntity.ok().body(awsS3Service.uploadFile(multipartFile));
 //    }
 //
