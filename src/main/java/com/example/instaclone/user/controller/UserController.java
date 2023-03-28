@@ -20,7 +20,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
 public class UserController {
