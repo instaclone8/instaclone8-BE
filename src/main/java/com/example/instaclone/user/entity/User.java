@@ -32,13 +32,13 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Post> posts = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Likes> likes = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private List<Comment> comments = new ArrayList<>();
 
     public User(String username, String password, String email) {
