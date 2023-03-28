@@ -33,7 +33,7 @@ public class KakaoService {
 
 
 
-    public void kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
+    public String kakaoLogin(String code) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
         String accessToken = getToken(code, "http://localhost:3000/kakao");
 
@@ -45,8 +45,8 @@ public class KakaoService {
 
         // 4. JWT 토큰 반환
         String createToken =  jwtUtil.createToken(kakaoUser.getUsername());
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
+        return createToken;
     }
 
     // 1. "인가 코드"로 "액세스 토큰" 요청
