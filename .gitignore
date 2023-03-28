@@ -39,4 +39,4 @@ out/
 .vscode/
 
 secrets.json
-application.yml
+application-aws.yml
