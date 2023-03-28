@@ -36,3 +36,5 @@ public class AwsS3UploadService implements UploadService {
         amazonS3.deleteObject(new DeleteObjectRequest(bucket, fileName));
     }
 }
+
+

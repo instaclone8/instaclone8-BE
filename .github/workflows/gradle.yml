@@ -15,9 +15,9 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: instaclone8-github-actions-s3-bucket
-  CODE_DEPLOY_APPLICATION_NAME: instaclone-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: instaclone-codedeploy-deployment-group
+  S3_BUCKET_NAME: instaclone-actions-s3-bucket
+  CODE_DEPLOY_APPLICATION_NAME: instaclone88-codedeploy-app
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: instaclone88-codedeploy-group
 
 permissions:
   contents: read
