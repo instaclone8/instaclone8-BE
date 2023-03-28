@@ -2,7 +2,6 @@ package com.example.instaclone.post.dto;
 
 import com.example.instaclone.comment.dto.CommentResponseDto;
 import com.example.instaclone.comment.entity.Comment;
-import com.example.instaclone.like.entity.Likes;
 import com.example.instaclone.post.entity.Post;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +23,7 @@ public class PostResponseDtoImpl extends PostResponseDto{
     private int likeCnt;
     private boolean likeCheck;
     private int commentCnt;
-    private final List<CommentResponseDto> comments = new ArrayList<>();
+    private final List<CommentResponseDto> commentList = new ArrayList<>();
 
     public PostResponseDtoImpl(Post post){
         this.postId = post.getId();
@@ -35,7 +34,7 @@ public class PostResponseDtoImpl extends PostResponseDto{
         this.content = post.getContent();
         this.commentCnt = post.getCommentCnt();
         for (Comment comment : post.getComments()){
-            comments.add(new CommentResponseDto(comment));
+            commentList.add(new CommentResponseDto(comment));
         }
         this.likeCnt = post.getLikeCnt();
         this.likeCheck = post.isLikeCheck();

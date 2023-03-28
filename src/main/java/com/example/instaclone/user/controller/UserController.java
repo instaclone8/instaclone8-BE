@@ -3,6 +3,8 @@ package com.example.instaclone.user.controller;
 import com.example.instaclone.jwt.JwtUtil;
 import com.example.instaclone.security.UserDetailsImpl;
 import com.example.instaclone.user.dto.*;
+////import com.example.instaclone.user.service.KakaoService;
+//import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -77,11 +79,6 @@ public class UserController {
         response.addCookie(cookie);
 
         return "redirect:/api/user/kakao";
-    }
-
-    @GetMapping("/kakao")
-    public String kakao() {
-        return "kakao";
     }
 
     // 닉네임 받기
