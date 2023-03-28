@@ -19,6 +19,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Slf4j
@@ -32,7 +33,7 @@ public class KakaoService {
 
 
 
-    public String kakaoLogin(String code) throws JsonProcessingException {
+    public void kakaoLogin(String code, HttpServletResponse response) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
         String accessToken = getToken(code, "http://localhost:3000/kakao");
 
@@ -44,9 +45,8 @@ public class KakaoService {
 
         // 4. JWT 토큰 반환
         String createToken =  jwtUtil.createToken(kakaoUser.getUsername());
-//        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
 
-        return createToken;
     }
 
     // 1. "인가 코드"로 "액세스 토큰" 요청
