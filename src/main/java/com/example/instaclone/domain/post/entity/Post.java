@@ -5,7 +5,6 @@ import com.example.instaclone.domain.like.Likes;
 import com.example.instaclone.domain.post.dto.PostRequestDto;
 import com.example.instaclone.domain.user.entity.User;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Post extends com.example.instaclone.domain.post.entity.Timestamped {
-
+public class Post extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String content;
-
 
     private String image;
 
@@ -34,21 +30,21 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
 
     private String imageName;
 
-    private int likeCnt = 0;
-
-    private boolean likeCheck = false;
-
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Likes> likes = new ArrayList<>();
 
-    public Post (PostRequestDto reqDto, User user){
+    private int likeCnt = 0;
 
+    private boolean likeCheck = false;
+
+    public Post (PostRequestDto reqDto, User user){
         this.content = reqDto.getContent();
         this.user = user;
     }
+
     public Post (String content, String image, String imageName, User user){
         this.content = content;
         this.image = image;
@@ -56,8 +52,9 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
         this.user = user;
     }
 
-
-
+    public void updatePost (String content){
+        this.content = content;
+    }
 
     public void commentCountPlus(){
         this.commentCnt += 1;
@@ -68,13 +65,11 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
     }
 
     public void addLike(){
-
         this.likeCheck = true;
         this.likeCnt += 1;
     }
 
     public void withdrawLike() {
-
         this.likeCheck = false;
         this.likeCnt -= 1;
     }

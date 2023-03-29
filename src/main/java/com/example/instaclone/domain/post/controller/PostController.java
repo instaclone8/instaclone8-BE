@@ -2,9 +2,9 @@ package com.example.instaclone.domain.post.controller;
 
 import com.example.instaclone.domain.like.LikeService;
 import com.example.instaclone.domain.post.dto.PostResponseDto;
-import com.example.instaclone.domain.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.domain.post.service.PostService;
 import com.example.instaclone.domain.user.dto.MessageResponseDto;
+import com.example.instaclone.domain.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
 import java.util.List;
 
 @RequestMapping("/api")
@@ -24,7 +23,7 @@ public class PostController {
     private final LikeService likeService;
 
     @PostMapping( path = "/posts",  consumes = {"multipart/form-data"})
-    public ResponseEntity<MessageResponseDto> createPost(@RequestPart MultipartFile image, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, @RequestPart(value = "content", required = false) String content, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         postService.createPost(content, image, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
@@ -45,8 +44,8 @@ public class PostController {
     }
 
     @PatchMapping("/posts/{postId}")
-    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @ModelAttribute MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        postService.updatePost(postId, image, content, userDetails.getUser());
+    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        postService.updatePost(postId, content, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 수정 성공!"));
     }
 

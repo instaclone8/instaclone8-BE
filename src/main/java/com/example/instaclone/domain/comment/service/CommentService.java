@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @RequiredArgsConstructor
 @Service
 public class CommentService {
@@ -21,7 +20,7 @@ public class CommentService {
 
     @Transactional
     public void createComment(Long postId, CommentRequestDto commentRequestDto, User user) {
-//        게시글 존재 여부 확인. 없으면 예외처리
+//      게시글 존재 여부 확인. 없으면 예외처리
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
         );
@@ -31,17 +30,21 @@ public class CommentService {
         post.getComments().add(comment);
     }
 
-    //    2. 댓글 삭제 메서드
+    //  댓글 삭제 메서드
     @Transactional
     public void deleteComment(Long postId, Long commentId , User user) {
         //        게시글 존재 여부 확인. 없으면 예외처리
         Post post = postRepository.findById(postId).orElseThrow(
                 () -> new IllegalArgumentException("게시글을 찾을 수 없습니다.")
         );
-//        댓글 존재 여부 확인. 없으면 예외처리
+//      댓글 존재 여부 확인. 없으면 예외처리
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new IllegalArgumentException("댓글을 찾을 수 없습니다.")
         );
+        // 내가 쓴 코멘트인가 확인
+        if(!user.getId().equals(comment.getUser().getId()))
+            throw new IllegalArgumentException("사용자가 일치하지 않습니다.");
+
         post.commentCountMinus();
         commentRepository.deleteById(commentId);
     }

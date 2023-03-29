@@ -4,14 +4,12 @@ import com.example.instaclone.domain.post.entity.Post;
 import com.example.instaclone.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
 @Entity
 public class Likes {
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
