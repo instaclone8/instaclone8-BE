@@ -25,9 +25,6 @@ public class PostController {
 
     @PostMapping( path = "/posts",  consumes = {"multipart/form-data"})
     public ResponseEntity<MessageResponseDto> createPost(@RequestPart MultipartFile image, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
-        System.out.println("=======클릭은 되고 있나======");
-        System.out.println(content);
-        System.out.println(image.getOriginalFilename());
         postService.createPost(content, image, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }

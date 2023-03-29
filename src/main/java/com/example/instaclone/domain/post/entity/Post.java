@@ -20,10 +20,10 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+
     private String content;
 
-    @Column(nullable = true)
+
     private String image;
 
     @ManyToOne
@@ -34,6 +34,10 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
 
     private String imageName;
 
+    private int likeCnt = 0;
+
+    private boolean likeCheck = false;
+
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
 
@@ -43,7 +47,6 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
     public Post (PostRequestDto reqDto, User user){
 
         this.content = reqDto.getContent();
-//        this.image = reqDto.getImage();
         this.user = user;
     }
     public Post (String content, String image, String imageName, User user){
@@ -53,15 +56,7 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
         this.user = user;
     }
 
-    private int likeCnt = 0;
 
-    private boolean likeCheck = false;
-
-    public void updatePost (String image, String imageName, String content){
-        this.content = content;
-        this.image = image;
-        this.imageName = imageName;
-    }
 
 
     public void commentCountPlus(){
@@ -77,8 +72,6 @@ public class Post extends com.example.instaclone.domain.post.entity.Timestamped 
         this.likeCheck = true;
         this.likeCnt += 1;
     }
-
-
 
     public void withdrawLike() {
 

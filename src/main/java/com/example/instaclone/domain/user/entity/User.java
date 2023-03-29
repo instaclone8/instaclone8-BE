@@ -47,13 +47,6 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String password, String userImage, String email) {
-        this.username = username;
-        this.password = password;
-        this.userImage = userImage;
-        this.email = email;
-    }
-
     public User(String username, Long kakaoId, String password, String email) {
         this.username = username;
         this.kakaoId = kakaoId;

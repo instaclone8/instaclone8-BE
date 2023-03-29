@@ -1,5 +1,4 @@
 package com.example.instaclone.domain.post.service;
-
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.example.instaclone.domain.user.entity.User;
 import com.example.instaclone.domain.post.dto.PostResponseDto;
@@ -99,9 +98,7 @@ public class PostService {
         if(!user.getId().equals(post.getUser().getId())){
             throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
         }
-
         s3Service.deleteImage(post.getImageName());
-
         postRepository.delete(post);
     }
 

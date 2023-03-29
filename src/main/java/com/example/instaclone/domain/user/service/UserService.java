@@ -40,7 +40,6 @@ public class UserService {
         String username = signupRequestDto.getUsername();
         String password = passwordEncoder.encode(signupRequestDto.getPassword());
         String email = signupRequestDto.getEmail();
-
         Optional<User> foundUsername = userRepository.findByUsername(username);
 
         if (foundUsername.isPresent()) {
@@ -105,5 +104,6 @@ public class UserService {
         Long foundUserId = user.getId();
         return new UserIdResponseDto(foundUserId);
     }
+
 }
 

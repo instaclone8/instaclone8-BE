@@ -1,12 +1,11 @@
 package com.example.instaclone.domain.comment.entity;
 
-import com.example.instaclone.domain.post.entity.Timestamped;
 import com.example.instaclone.domain.comment.dto.CommentRequestDto;
 import com.example.instaclone.domain.post.entity.Post;
+import com.example.instaclone.domain.post.entity.Timestamped;
 import com.example.instaclone.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -19,7 +18,7 @@ public class Comment extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+
     private String comment;
 
     @ManyToOne

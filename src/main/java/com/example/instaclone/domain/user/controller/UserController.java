@@ -41,10 +41,8 @@ public class UserController {
     // 유저이메일 중복 ck
     @PostMapping("/checkemail")
     public ResponseEntity<MessageResponseDto> checkEmail(@Valid @RequestBody CheckEmailRequestDto checkEmailRequestDto) {
-        System.out.println("dfjslkfjslkdfjsf");
-        System.out.println(checkEmailRequestDto.getEmail());
         userservice.checkemail(checkEmailRequestDto);
-        return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
+        return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "이메일 생성 가능!"));
     }
 
 
@@ -62,15 +60,11 @@ public class UserController {
         // code: 카카오 서버로부터 받은 인가 코드
         String createToken = kakaoService.kakaoLogin(code);
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, createToken);
-//        // Cookie 생성 및 직접 브라우저에 Set
-//        Cookie cookie = new Cookie(JwtUtil.AUTHORIZATION_HEADER, createToken.substring(7));
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "카카오 로그인 성공"));
     }
 
     // 아이디 받기
-    @GetMapping("/usernId")
+    @GetMapping("/userId")
     public UserIdResponseDto getUserId(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return userservice.getUserId(userDetails.getUser().getId());
     }

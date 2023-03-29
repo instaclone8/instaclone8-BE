@@ -1,12 +1,11 @@
 package com.example.instaclone.domain.post.dto;
 
 import com.example.instaclone.domain.post.entity.Post;
-import com.example.instaclone.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
-import java.util.List;
 
 @NoArgsConstructor
 @Getter @Setter
@@ -36,6 +35,5 @@ public class PostResponseDto {
         this.likeCnt = post.getLikeCnt();
         this.likeCheck = post.isLikeCheck();
     }
-
 
 }

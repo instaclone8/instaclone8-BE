@@ -40,7 +40,7 @@ public class WebSecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() {
         // h2-console 사용 및 resources 접근 허용 설정
         return (web) -> web.ignoring()
-                .requestMatchers(PathRequest.toH2Console())
+//                .requestMatchers(PathRequest.toH2Console())
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -57,7 +57,6 @@ public class WebSecurityConfig {
                 .antMatchers( "/api/user/checkemail").permitAll()
                 .antMatchers( "/api/user/kakao/callback").permitAll()
                 .antMatchers("/api/user/checkusername").permitAll()
-                .antMatchers( "/s3/**").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new ApiException(), JwtAuthFilter.class);
