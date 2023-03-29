@@ -25,6 +25,7 @@ public class PostResponseDto {
         this.postId = post.getId();
         this.username = post.getUser().getUsername();
         this.userImage = post.getUser().getUserImage();
+        this.userId = post.getUser().getId();
         this.image = post.getImage();
         this.content = post.getContent();
         this.createdate = post.getCreatedate().withNano(0);
