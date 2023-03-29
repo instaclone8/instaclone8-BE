@@ -23,6 +23,7 @@ public class PostResponseDto {
 
     public PostResponseDto(Post post){
         this.postId = post.getId();
+        this.userId = post.getUser().getId();
         this.username = post.getUser().getUsername();
         this.userImage = post.getUser().getUserImage();
         this.userId = post.getUser().getId();

@@ -1,6 +1,7 @@
 package com.example.instaclone.domain.user.dto;
 
 import com.example.instaclone.domain.post.dto.PostResponseDto;
+import com.example.instaclone.domain.post.entity.Post;
 import com.example.instaclone.domain.user.entity.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,11 +17,11 @@ public class MyPageResponseDto {
     private int postsCnt;
     private List<PostResponseDto> posts;
 
-    public MyPageResponseDto(User user, List<PostResponseDto> posts) {
+    public MyPageResponseDto(User user, List<PostResponseDto> posts, List<Post> postList) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.userImage = user.getUserImage();
-        this.postsCnt = posts.size();
+        this.postsCnt = postList.size();
         this.posts = posts;
     }
 

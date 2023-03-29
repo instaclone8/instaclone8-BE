@@ -85,6 +85,7 @@ public class UserService {
     // 마이페이지 조회 (토큰o)
     @Transactional(readOnly = true)
     public MyPageResponseDto getMyPage(User user, int page) {
+        List<Post> postList = postRepository.findAllByUser(user);
         Pageable pageable = PageRequest.of(page, 10, Sort.by("createdate").descending());
         Page<Post> entityPage = postRepository.findByUserOrderByCreatedateDesc(user, pageable);
         List<Post> entityList = entityPage.getContent();
@@ -92,7 +93,7 @@ public class UserService {
             for (Post post : entityList) {
                 postResponseDtos.add(new PostResponseDto(post));
         }
-        return new MyPageResponseDto(user, postResponseDtos);
+        return new MyPageResponseDto(user, postResponseDtos, postList);
     }
 
 
