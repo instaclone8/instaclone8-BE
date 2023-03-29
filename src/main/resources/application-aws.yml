@@ -1,0 +1,13 @@
+cloud:
+  aws:
+    s3:
+      bucket: project-clone
+      port: 8080
+    credentials:
+      access-key: AKIAQ4TZNFUBTIPRMAZT
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
