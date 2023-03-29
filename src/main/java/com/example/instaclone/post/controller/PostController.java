@@ -25,7 +25,7 @@ public class PostController {
     private final LikeService likeService;
 
     @PostMapping( path = "/posts",  consumes = {"multipart/form-data"})
-    public ResponseEntity<MessageResponseDto> createPost(@RequestPart MultipartFile image, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+    public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, @RequestPart(value = "content", required = false) String content, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         System.out.println("=======클릭은 되고 있나======");
         System.out.println(content);
         System.out.println(image.getOriginalFilename());

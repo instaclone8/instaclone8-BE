@@ -20,10 +20,9 @@ public class Post extends Timestamped {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String content;
 
-    @Column(nullable = true)
     private String image;
 
     @ManyToOne
@@ -32,6 +31,7 @@ public class Post extends Timestamped {
 
     private int commentCnt;
 
+    @Column(nullable = true)
     private String imageName;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)

@@ -39,6 +39,7 @@ public class PostService {
         uploadToS3Service(objectMetadata, image, fileName);
 
         String url = s3Service.getFileUrl(fileName);
+        log.info(fileName, url, content);
         Post post = new Post(content, url, fileName, user);
         postRepository.save(post);
     }
@@ -86,7 +87,7 @@ public class PostService {
         uploadToS3Service(objectMetadata, image, fileName);
 
         String url = s3Service.getFileUrl(fileName);
-        log.info(fileName);
+        log.info(fileName, url, content);
 
         post.updatePost(url, fileName, content);
         postRepository.save(post);
@@ -102,7 +103,7 @@ public class PostService {
         }
 
         s3Service.deleteImage(post.getImageName());
-
+        log.info(post.getImageName());
         postRepository.delete(post);
     }
 
