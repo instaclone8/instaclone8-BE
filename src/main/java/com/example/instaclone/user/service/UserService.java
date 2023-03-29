@@ -104,17 +104,14 @@ public class UserService {
 //        return new MyPageResponseDto(user, postResponseDtos);
 //    }
     @Transactional(readOnly = true)
-    public Page<MyPageResponseDto> getMyPage(String username, User user, int page, int size) {
-        final User finalUser = userRepository.findByUsername(username).orElseThrow(
+    public MyPageResponseDto getMyPage(String username, User user, int page) {
+        user = userRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        Pageable pageable = PageRequest.of(page, size, Sort.by("createdate").descending());
-        Page<Post> postPage = postRepository.findByUserOrderByCreatedateDesc(finalUser, pageable);
-        List<MyPageResponseDto> myPageResponseDtos = postPage.stream()
-                .map(post -> new MyPageResponseDto(finalUser, Collections.singletonList(new PostResponseDto(post))))
-                .collect(Collectors.toList());
-        return new PageImpl<>(myPageResponseDtos, pageable, postPage.getTotalElements());
+        Pageable pageable = PageRequest.of(page, 10, Sort.by("createdate").descending());
+        Page<Post> posts = postRepository.findByUser(user, pageable);
+        List<PostResponseDto> postResponseDtos = posts.stream().map(PostResponseDto::new).collect(Collectors.toList());
+        return new MyPageResponseDto(user, postResponseDtos);
     }
-
 
     //닉네임받기
     @Transactional(readOnly = true)

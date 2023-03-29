@@ -68,13 +68,9 @@ public class UserController {
 //    public MyPageResponseDto getMyPage(@PathVariable String username, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 //        return userservice.getMyPage(username, userDetails.getUser());
 //    }
-    @GetMapping("/mypage/{username}?page=0&size=10")
-    public Page<MyPageResponseDto> getMyPage(
-            @PathVariable String username,
-            @AuthenticationPrincipal UserDetailsImpl userDetails,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        return userservice.getMyPage(username, userDetails.getUser(), page, size);
+    @GetMapping("/mypage/{username}")
+    public MyPageResponseDto getMyPage(@PathVariable String username, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam(value = "page", defaultValue = "0") int page) {
+        return userservice.getMyPage(username, userDetails.getUser(), page);
     }
 
 
