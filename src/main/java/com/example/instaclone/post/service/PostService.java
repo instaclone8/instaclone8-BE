@@ -70,26 +70,26 @@ public class PostService {
     }
 
     @Transactional
-    public void updatePost(Long postId, MultipartFile image, String content, User user) {
+    public void updatePost(Long postId, String content, User user) {
         Post post = postRepository.findById(postId).orElseThrow(
                 ()-> new IllegalArgumentException("해당 게시글이 존재하지 않습니다.")
         );
         if(!user.getId().equals(post.getUser().getId())){
             throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
         }
-        s3Service.deleteImage(post.getImageName());
-        log.info(post.getImageName());
+//        s3Service.deleteImage(post.getImageName());
+//        log.info(post.getImageName());
 
-        String fileName = createFileName(image.getOriginalFilename());
-        extensionCheck(fileName);
+//        String fileName = createFileName(image.getOriginalFilename());
+//        extensionCheck(fileName);
+//
+//        ObjectMetadata objectMetadata = new ObjectMetadata();
+//        uploadToS3Service(objectMetadata, image, fileName);
 
-        ObjectMetadata objectMetadata = new ObjectMetadata();
-        uploadToS3Service(objectMetadata, image, fileName);
+//        String url = s3Service.getFileUrl(fileName);
+//        log.info(fileName, url, content);
 
-        String url = s3Service.getFileUrl(fileName);
-        log.info(fileName, url, content);
-
-        post.updatePost(url, fileName, content);
+        post.updatePost(content);
         postRepository.save(post);
     }
 

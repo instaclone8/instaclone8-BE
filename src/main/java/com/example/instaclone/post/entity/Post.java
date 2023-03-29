@@ -57,12 +57,15 @@ public class Post extends Timestamped {
 
     private boolean likeCheck = false;
 
-    public void updatePost (String image, String imageName, String content){
+    public void updatePost (String content){
         this.content = content;
-        this.image = image;
-        this.imageName = imageName;
     }
 
+//    public void updatePost (String image, String imageName, String content){
+//        this.content = content;
+//        this.image = image;
+//        this.imageName = imageName;
+//    }
 
     public void commentCountPlus(){
         this.commentCnt += 1;

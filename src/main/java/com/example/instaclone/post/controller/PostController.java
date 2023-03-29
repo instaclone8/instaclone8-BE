@@ -49,8 +49,8 @@ public class PostController {
     }
 
     @PatchMapping("/posts/{postId}")
-    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @ModelAttribute MultipartFile image, String content, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        postService.updatePost(postId, image, content, userDetails.getUser());
+    public ResponseEntity<MessageResponseDto> updatePost(@PathVariable Long postId, @RequestPart String content, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        postService.updatePost(postId, content, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 수정 성공!"));
     }
 

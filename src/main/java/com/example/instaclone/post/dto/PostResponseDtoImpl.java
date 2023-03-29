@@ -15,6 +15,7 @@ import java.util.List;
 public class PostResponseDtoImpl extends PostResponseDto{
 
     private Long postId;
+    private Long userId;
     private String username;
     private String userImage;
     private String image;
@@ -27,6 +28,7 @@ public class PostResponseDtoImpl extends PostResponseDto{
 
     public PostResponseDtoImpl(Post post){
         this.postId = post.getId();
+        this.userId = post.getUser().getId();
         this.username = post.getUser().getUsername();
         this.userImage = post.getUser().getUserImage();
         this.image = post.getImage();
