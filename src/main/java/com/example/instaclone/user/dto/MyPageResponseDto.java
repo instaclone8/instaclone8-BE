@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collections;
 import java.util.List;
 
 @Getter @NoArgsConstructor @Setter
@@ -19,7 +20,6 @@ public class MyPageResponseDto {
 
     public MyPageResponseDto(User user, List<PostResponseDto> posts) {
         this.id = user.getId();
-
         this.username = user.getUsername();
         this.userImage = user.getUserImage();
         this.postsCnt = posts.size();
