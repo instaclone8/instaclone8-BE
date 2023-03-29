@@ -8,6 +8,7 @@ import com.example.instaclone.user.dto.*;
 import com.example.instaclone.user.entity.User;
 import com.example.instaclone.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -89,16 +92,27 @@ public class UserService {
     }
 
     // 마이페이지 조회 (토큰o)
+//    @Transactional(readOnly = true)
+//    public MyPageResponseDto getMyPage(String username, User user) {
+//       user =  userRepository.findByUsername(username).orElseThrow(
+//                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+//        List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
+//        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+//            for (Post post : posts) {
+//                postResponseDtos.add(new PostResponseDto(post));
+//        }
+//        return new MyPageResponseDto(user, postResponseDtos);
+//    }
     @Transactional(readOnly = true)
-    public MyPageResponseDto getMyPage(String username, User user) {
-       user =  userRepository.findByUsername(username).orElseThrow(
+    public Page<MyPageResponseDto> getMyPage(String username, User user, int page, int size) {
+        final User finalUser = userRepository.findByUsername(username).orElseThrow(
                 () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
-        List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
-        List<PostResponseDto> postResponseDtos = new ArrayList<>();
-            for (Post post : posts) {
-                postResponseDtos.add(new PostResponseDto(post));
-        }
-        return new MyPageResponseDto(user, postResponseDtos);
+        Pageable pageable = PageRequest.of(page, size, Sort.by("createdate").descending());
+        Page<Post> postPage = postRepository.findByUserOrderByCreatedateDesc(finalUser, pageable);
+        List<MyPageResponseDto> myPageResponseDtos = postPage.stream()
+                .map(post -> new MyPageResponseDto(finalUser, Collections.singletonList(new PostResponseDto(post))))
+                .collect(Collectors.toList());
+        return new PageImpl<>(myPageResponseDtos, pageable, postPage.getTotalElements());
     }
 
     //닉네임받기

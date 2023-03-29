@@ -9,6 +9,7 @@ import com.example.instaclone.user.service.KakaoService;
 import com.example.instaclone.user.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -63,10 +64,20 @@ public class UserController {
     }
 
     // 마이페이지 조회 (토큰o)
-    @GetMapping("/mypage/{username}")
-    public MyPageResponseDto getMyPage(@PathVariable String username, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return userservice.getMyPage(username, userDetails.getUser());
+//    @GetMapping("/mypage/{username}")
+//    public MyPageResponseDto getMyPage(@PathVariable String username, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+//        return userservice.getMyPage(username, userDetails.getUser());
+//    }
+    @GetMapping("/mypage/{username}?page=0&size=10")
+    public Page<MyPageResponseDto> getMyPage(
+            @PathVariable String username,
+            @AuthenticationPrincipal UserDetailsImpl userDetails,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return userservice.getMyPage(username, userDetails.getUser(), page, size);
     }
+
+
     //카카오톡 로그인
     @GetMapping("/kakao/callback")
     public ResponseEntity<MessageResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
