@@ -63,7 +63,7 @@ public class UserController {
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "succss"));
     }
 
-    // 마이페이지 조회 (토큰o)
+    // 마이페이지 조회 (토큰o) -페이징처리 10개씩
 //    @GetMapping("/mypage/{username}")
 //    public MyPageResponseDto getMyPage(@PathVariable String username, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 //        return userservice.getMyPage(username, userDetails.getUser());

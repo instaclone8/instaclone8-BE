@@ -56,11 +56,11 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public void login(LoginRequestDto loginRequestDto, HttpServletResponse response){
-            String email = loginRequestDto.getEmail();
-            String password = loginRequestDto.getPassword();
+        String email = loginRequestDto.getEmail();
+        String password = loginRequestDto.getPassword();
 
-            User user = userRepository.findByEmail(email).orElseThrow(
-                    () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
@@ -114,6 +114,7 @@ public class UserService {
                 .collect(Collectors.toList());
         return new PageImpl<>(myPageResponseDtos, pageable, postPage.getTotalElements());
     }
+
 
     //닉네임받기
     @Transactional(readOnly = true)
