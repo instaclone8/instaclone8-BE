@@ -18,7 +18,7 @@ public class AwsS3UploadService implements com.example.instaclone.global.aws.Upl
     private final AmazonS3 amazonS3;
     private final S3Component component;
 
-     @Value("${cloud.aws.s3.bucket}")
+    @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
     @Override

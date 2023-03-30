@@ -30,6 +30,7 @@ public class PostService {
 
     @Transactional
     public void createPost(String content, MultipartFile image, User user){
+
         String fileName = createFileName(image.getOriginalFilename());
         extensionCheck(fileName);
 

@@ -7,6 +7,7 @@ import com.example.instaclone.global.jwt.JwtUtil;
 import com.example.instaclone.global.security.UserDetailsImpl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -44,6 +45,7 @@ public class UserController {
         userservice.checkemail(checkEmailRequestDto);
         return  ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "이메일 생성 가능!"));
     }
+
 
 
 

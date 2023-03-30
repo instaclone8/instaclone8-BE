@@ -15,16 +15,16 @@ on:
 
 env:
   AWS_REGION: ap-northeast-2
-  S3_BUCKET_NAME: instaclone8-github-actions-s3-bucket
-  CODE_DEPLOY_APPLICATION_NAME: instaclone-codedeploy-app
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: instaclone-codedeploy-deployment-group
+  S3_BUCKET_NAME: instaclone-actions-s3-bucket
+  CODE_DEPLOY_APPLICATION_NAME: instaclone88-codedeploy-app
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: instaclone88-codedeploy-group
 
 permissions:
   contents: read
 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
+  #  build:
+  #    runs-on: ubuntu-latest
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
@@ -75,7 +75,6 @@ jobs:
             --ignore-hidden-files \
             --s3-location s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip \
             --source .
-
       # (6) S3 버킷에 있는 파일을 대상으로 CodeDeploy 실행
       - name: Deploy to AWS EC2 from S3
         run: |

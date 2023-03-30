@@ -19,8 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +35,6 @@ public class UserService {
     private final com.example.instaclone.global.jwt.JwtUtil jwtUtil;
 
     private final PostRepository postRepository;
-
 
     @Transactional
     public void signup(SignupRequestDto signupRequestDto) {
@@ -58,11 +59,11 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public void login(LoginRequestDto loginRequestDto, HttpServletResponse response){
-            String email = loginRequestDto.getEmail();
-            String password = loginRequestDto.getPassword();
+        String email = loginRequestDto.getEmail();
+        String password = loginRequestDto.getPassword();
 
-            User user = userRepository.findByEmail(email).orElseThrow(
-                    () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
@@ -83,6 +84,17 @@ public class UserService {
     }
 
     // 마이페이지 조회 (토큰o)
+//    @Transactional(readOnly = true)
+//    public MyPageResponseDto getMyPage(String username, User user) {
+//       user =  userRepository.findByUsername(username).orElseThrow(
+//                () -> new IllegalArgumentException("사용자를 찾을 수 없습니다"));
+//        List<Post> posts = postRepository.findByUserOrderByCreatedateDesc(user);
+//        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+//            for (Post post : posts) {
+//                postResponseDtos.add(new PostResponseDto(post));
+//        }
+//        return new MyPageResponseDto(user, postResponseDtos);
+//    }
     @Transactional(readOnly = true)
     public MyPageResponseDto getMyPage(User user, int page) {
         List<Post> postList = postRepository.findAllByUser(user);

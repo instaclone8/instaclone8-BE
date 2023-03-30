@@ -7,6 +7,7 @@ import com.example.instaclone.domain.user.dto.MessageResponseDto;
 import com.example.instaclone.domain.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +25,7 @@ public class PostController {
 
     @PostMapping( path = "/posts",  consumes = {"multipart/form-data"})
     public ResponseEntity<MessageResponseDto> createPost(@RequestPart(value = "image", required = false) MultipartFile image, @RequestPart(value = "content", required = false) String content, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+
         postService.createPost(content, image, userDetails.getUser());
         return ResponseEntity.ok(new MessageResponseDto(HttpStatus.OK, "게시글 작성 성공!"));
     }
