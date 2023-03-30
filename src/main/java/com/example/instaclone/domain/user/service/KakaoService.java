@@ -34,7 +34,7 @@ public class KakaoService {
 
     public String kakaoLogin(String code) throws JsonProcessingException {
         // 1. "인가 코드"로 "액세스 토큰" 요청
-        String accessToken = getToken(code, "http://localhost:3000/kakao");
+        String accessToken = getToken(code, "http://ssong.ch94.s3-website.ap-northeast-2.amazonaws.com/kakao");
 
         // 2. 토큰으로 카카오 API 호출 : "액세스 토큰"으로 "카카오 사용자 정보" 가져오기
         KakaoUserDto kakaoUserDto = getKakaoUserInfo(accessToken);

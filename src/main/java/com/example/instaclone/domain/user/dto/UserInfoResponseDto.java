@@ -5,10 +5,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class UserIdResponseDto {
+public class UserInfoResponseDto {
     private Long userId;
+    private String username;
 
-    public UserIdResponseDto(Long userId) {
+    public UserInfoResponseDto(Long userId, String username) {
         this.userId = userId;
+        this.username = username;
     }
 }

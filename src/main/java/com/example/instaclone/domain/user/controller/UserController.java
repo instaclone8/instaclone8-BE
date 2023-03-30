@@ -53,7 +53,6 @@ public class UserController {
         return userservice.getMyPage(userDetails.getUser(), page);
     }
 
-
     //카카오톡 로그인
     @GetMapping("/kakao/callback")
     public ResponseEntity<MessageResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
@@ -64,8 +63,8 @@ public class UserController {
     }
 
     // 아이디 받기
-    @GetMapping("/userId")
-    public UserIdResponseDto getUserId(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return userservice.getUserId(userDetails.getUser().getId());
+    @GetMapping("/username")
+    public UserInfoResponseDto getUserId(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userservice.getUserInfo(userDetails.getUser().getId());
     }
 }

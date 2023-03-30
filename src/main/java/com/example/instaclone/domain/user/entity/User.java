@@ -32,19 +32,11 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany
-    private List<Post> posts = new ArrayList<>();
-
-    @OneToMany
-    private List<Likes> likes = new ArrayList<>();
-
-    @OneToMany
-    private List<Comment> comments = new ArrayList<>();
-
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String userImage) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.userImage = userImage;
     }
 
     public User(String username, Long kakaoId, String password, String email) {

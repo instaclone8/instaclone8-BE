@@ -16,7 +16,7 @@ import java.io.InputStream;
 public class AwsS3UploadService implements com.example.instaclone.global.aws.UploadService {
 
     private final AmazonS3 amazonS3;
-    private final com.example.instaclone.global.aws.S3Component component;
+    private final S3Component component;
 
      @Value("${cloud.aws.s3.bucket}")
     private String bucket;
