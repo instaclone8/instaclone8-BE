@@ -8,14 +8,10 @@ import com.example.instaclone.domain.post.dto.PostResponseDto;
 import com.example.instaclone.domain.post.entity.Post;
 import com.example.instaclone.domain.post.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD:src/main/java/com/example/instaclone/user/service/UserService.java
-import org.springframework.data.domain.*;
-=======
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
->>>>>>> cat3:src/main/java/com/example/instaclone/domain/user/service/UserService.java
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

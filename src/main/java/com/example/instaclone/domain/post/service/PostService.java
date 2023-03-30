@@ -1,22 +1,12 @@
 package com.example.instaclone.domain.post.service;
 
 import com.amazonaws.services.s3.model.ObjectMetadata;
-<<<<<<< HEAD:src/main/java/com/example/instaclone/post/service/PostService.java
-import com.example.instaclone.aws.UploadService;
-import com.example.instaclone.post.dto.PostRequestDto;
-import com.example.instaclone.post.dto.PostResponseDto;
-import com.example.instaclone.post.dto.PostResponseDtoImpl;
-import com.example.instaclone.post.entity.Post;
-import com.example.instaclone.post.repository.PostRepository;
-import com.example.instaclone.user.entity.User;
-=======
 import com.example.instaclone.domain.post.dto.PostResponseDto;
 import com.example.instaclone.domain.post.entity.Post;
 import com.example.instaclone.global.aws.UploadService;
 import com.example.instaclone.domain.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.domain.post.repository.PostRepository;
 import com.example.instaclone.domain.user.entity.User;
->>>>>>> cat3:src/main/java/com/example/instaclone/domain/post/service/PostService.java
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
