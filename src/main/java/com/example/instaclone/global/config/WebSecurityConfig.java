@@ -71,7 +71,9 @@ public class WebSecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
 
         // 사전에 약속된 출처를 명시
+        config.addAllowedOrigin("http://ssong.ch94.s3-website.ap-northeast-2.amazonaws.com");
         config.addAllowedOrigin("http://localhost:3000");
+
 //        config.addAllowedOrigin("클라이언트 배포 주소");
 
 

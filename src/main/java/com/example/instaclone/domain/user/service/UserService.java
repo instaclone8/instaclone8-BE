@@ -40,6 +40,7 @@ public class UserService {
     public void signup(SignupRequestDto signupRequestDto) {
         String username = signupRequestDto.getUsername();
         String password = passwordEncoder.encode(signupRequestDto.getPassword());
+        String userImage = signupRequestDto.getUserImage();
         String email = signupRequestDto.getEmail();
         Optional<User> foundUsername = userRepository.findByUsername(username);
 
@@ -52,7 +53,7 @@ public class UserService {
             throw new IllegalArgumentException("이메일이 중복됩니다");
         }
 
-        User user = new User(username, password, email);
+        User user = new User(username, password, email, userImage);
         userRepository.save(user);
     }
 
@@ -82,7 +83,6 @@ public class UserService {
         }
     }
 
-
     // 마이페이지 조회 (토큰o)
 //    @Transactional(readOnly = true)
 //    public MyPageResponseDto getMyPage(String username, User user) {
@@ -98,7 +98,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public MyPageResponseDto getMyPage(User user, int page) {
         List<Post> postList = postRepository.findAllByUser(user);
-        Pageable pageable = PageRequest.of(page, 10, Sort.by("createdate").descending());
+        Pageable pageable = PageRequest.of(page, 9, Sort.by("createdate").descending());
         Page<Post> entityPage = postRepository.findByUserOrderByCreatedateDesc(user, pageable);
         List<Post> entityList = entityPage.getContent();
         List<PostResponseDto> postResponseDtos = new ArrayList<>();
@@ -108,15 +108,14 @@ public class UserService {
         return new MyPageResponseDto(user, postResponseDtos, postList);
     }
 
-
     //유저아이디받기
     @Transactional(readOnly = true)
-    public UserIdResponseDto getUserId(Long userId) {
+    public UserInfoResponseDto getUserInfo(Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + userId));
         Long foundUserId = user.getId();
-        return new UserIdResponseDto(foundUserId);
+        String foundUserName = user.getUsername();
+        return new UserInfoResponseDto(foundUserId, foundUserName);
     }
-
 }
 

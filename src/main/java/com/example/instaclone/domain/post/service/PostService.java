@@ -8,6 +8,7 @@ import com.example.instaclone.domain.post.dto.PostResponseDtoImpl;
 import com.example.instaclone.domain.post.repository.PostRepository;
 import com.example.instaclone.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class PostService {
@@ -42,7 +44,7 @@ public class PostService {
 
     @Transactional(readOnly = true)
     public List<PostResponseDto> fetchPages(Long lastPostId, int size){
-        PageRequest pageRequest = PageRequest.of(0,10);
+        PageRequest pageRequest = PageRequest.of(0,5);
         Page<Post> entityPage = postRepository.findByIdLessThanOrderByIdDesc(lastPostId, pageRequest);
         List<Post> entityList = entityPage.getContent();
         return entityList.stream()
@@ -84,6 +86,7 @@ public class PostService {
         if(!user.getId().equals(post.getUser().getId())){
             throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
         }
+        log.info(post.getImageName());
         s3Service.deleteImage(post.getImageName());
         postRepository.delete(post);
     }
