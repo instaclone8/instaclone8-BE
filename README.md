@@ -1,9 +1,9 @@
 ## 항해99 13기 미니프로젝트 8조 Backend github
 
 ## 🏛 프로젝트 주제
-SeoulCulturePort (서울문화행사 조회 서비스)
+InstgramCloneCoding
 
-* 서울시 문화 행사 검색과 리뷰 작성 
+* 인스타그램 클론코딩
 
 📅 프로젝트 기간 : 2023.03.24 ~ 2023.03.30
 
@@ -18,7 +18,7 @@ SeoulCulturePort (서울문화행사 조회 서비스)
 
 <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=flat-square&logo=AmazonEC2&logoColor=white"/>  <img src="https://img.shields.io/badge/AmazonS3-569A31?style=flat-square&logo=AmazonS3&logoColor=white"/>  <img src="https://img.shields.io/badge/AmazonRDS-527FFF?style=flat-square&logo=AmazonRDS&logoColor=white"/>  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>
 
-## [📋 팀 노션, API 명세서](https://www.notion.so/5-SA-f4ebf090ac43441f88ff063a6ee7cd78?pvs=4)
+<!-- ## [📋 팀 노션, API 명세서](https://www.notion.so/5-SA-f4ebf090ac43441f88ff063a6ee7cd78?pvs=4)
 
 ## 📲 프로젝트 기능
 1. 메인페이지
@@ -66,3 +66,4 @@ SeoulCulturePort (서울문화행사 조회 서비스)
 4. API 명세서에 작성에 대한 중요성
     * 엔티티 컬럼이 많다보니까 완성 이후 responsedto를 변경해야 할 일들이 많아졌다 사소한 작업이기는 했지만 아무래도 앞으로는 모든 data를 넘겨주는 게 좋겠다는 생각이 들었다
     * 예외처리와 상태코드를 받는 게 FE에서 중요한 일 인 것 같아서 잘 처리하고 API명세서에도 기록해주어야 한다는 것을 배웠습니다  + camelcase 같은 사소 한 것들도 잘 표기해서 보내드리기
+-->
