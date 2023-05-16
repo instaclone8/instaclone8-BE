@@ -1,9 +1,6 @@
 ## 항해99 13기 미니프로젝트 8조 Backend github
 
-## 🏛 프로젝트 주제
-InstgramCloneCoding
-
-* 인스타그램 클론코딩
+## [📋 팀 노션, API 명세서](https://www.notion.so/5-SA-f4ebf090ac43441f88ff063a6ee7cd78?pvs=4)
 
 📅 프로젝트 기간 : 2023.03.24 ~ 2023.03.30
 
@@ -18,7 +15,13 @@
 
 <img src="https://img.shields.io/badge/AmazonEC2-FF9900?style=flat-square&logo=AmazonEC2&logoColor=white"/>  <img src="https://img.shields.io/badge/AmazonS3-569A31?style=flat-square&logo=AmazonS3&logoColor=white"/>  <img src="https://img.shields.io/badge/AmazonRDS-527FFF?style=flat-square&logo=AmazonRDS&logoColor=white"/>  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>  <img src="https://img.shields.io/badge/Ubuntu-E95420?style=flat-square&logo=Ubuntu&logoColor=white"/>
 
-<!-- ## [📋 팀 노션, API 명세서](https://www.notion.so/5-SA-f4ebf090ac43441f88ff063a6ee7cd78?pvs=4)
+## 서비스 아키택쳐 
+<img width="913" alt="image" src="https://github.com/instaclone8/instaclone8-BE/assets/124007041/57ed9463-c947-443a-905d-00966eab6e82">
+
+## 📋 ERD
+<img width="925" alt="image" src="https://github.com/instaclone8/instaclone8-BE/assets/124007041/9a07ff96-6eb5-4316-bf2e-575f53f80f7a">
+
+<!-- 
 
 ## 📲 프로젝트 기능
 1. 메인페이지
@@ -44,8 +47,7 @@
     * 게시글에 대한 좋아요 기능
     * 게시글에 대한 댓글 쓰기
 
-## 📋 ERD
-![스크린샷 2023-03-23 오전 10 59 45](https://user-images.githubusercontent.com/99319021/227106520-e7ec40fa-73a4-49de-9121-7104a1cbc300.png)
+
 
 ## ⚽ 트러블 슈팅
 
